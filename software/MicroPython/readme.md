@@ -85,3 +85,47 @@ import webrepl_setup
 Press `E` to enable webrepl on startup, and set `cyobot` as the password.
 
 **Note**: The portal will attempt to connect to CYOBrain via webrepl with the password `cyobot`, so if you set the password to be anything else, the connection will not be successfully established.
+
+# Servo Test Web UI (Direct Servo Control)
+This repo includes a standalone MicroPython program that starts a small web server and lets you directly set angles for PCA9685 channels (0~15) from your browser. This is useful for testing / validating servos and wiring.
+
+## Files
+* Web page (on micro SD): `sd/servo-test/index.html`  -> `/sdcard/servo-test/index.html`
+* MicroPython program: `sd/apps/servo_test_main.py`
+
+## Run it on CYOBot
+1. Copy the `sd/` folder content to your micro SD card (same as normal installation).
+2. Deploy `sd/apps/servo_test_main.py` as the board `main.py` using **one** of the following:
+
+Option A (recommended): write it to `/sdcard/main.py` and reboot (bootloader will copy it to internal `main.py`):
+```bash
+rshell -p <PORT> -b 115200 cp sd/apps/servo_test_main.py /sdcard/main.py
+```
+Then hard-reset the board.
+
+Option B: open the Portal code editor, paste the content of `sd/apps/servo_test_main.py`, and click Deploy.
+
+3. Connect your laptop/phone to the WiFi AP named `CYOBot`.
+4. Open:
+* `http://192.168.4.1/` (recommended)
+* or `http://portal.cyobot.com/` (DNS convenience)
+
+## Go back to the normal Portal program
+Use the built-in reset/revert sequence described in `pyboard/boot.py` (hold the left button on boot and choose Portal), or deploy the original `pyboard/main-server.py` again.
+
+# Crawler Control Panel (No Coding)
+If you want to drive the 4-leg crawler without writing code in the portal editor, a lightweight control page is included.
+
+## Files
+* Web page (on micro SD): `sd/portal/crawler-control/index.html`  -> `/sdcard/portal/crawler-control/index.html`
+* Server APIs are implemented in `pyboard/main.py` and `pyboard/main-server.py` (routes under `/api/crawler/*`).
+
+## Use it
+1. Make sure your SD card has the latest `sd/` content (especially `sd/lib/kinematics.py`).
+2. Run the normal portal program (default OS).
+3. Connect to the robot (AP `CYOBot` or same WiFi network).
+4. Open:
+* `http://192.168.4.1/crawler-control` (AP mode)
+* or `http://<robot-ip>/crawler-control` (WiFi mode)
+
+The page provides buttons for `forward`, `backward`, `rotate_left/right`, `lateral_left/right`, and `STOP`.

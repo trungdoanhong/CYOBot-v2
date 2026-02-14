@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>CYOBot Crawler Control</title>
+    <style>
+      :root {
+        --bg: #0b0f1a;
+        --panel: rgba(255, 255, 255, 0.06);
+        --panel2: rgba(255, 255, 255, 0.09);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.66);
+        --ok: #86efac;
+        --warn: #fbbf24;
+        --danger: #fb7185;
+        --accent: #7dd3fc;
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+          "Courier New", monospace;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans,
+          Helvetica, Arial, sans-serif;
+        background: radial-gradient(1100px 800px at 15% 10%, rgba(125, 211, 252, 0.18), transparent),
+          radial-gradient(1000px 700px at 85% 20%, rgba(251, 113, 133, 0.14), transparent),
+          radial-gradient(900px 700px at 45% 92%, rgba(134, 239, 172, 0.10), transparent),
+          var(--bg);
+        color: var(--text);
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        padding: 16px;
+        background: rgba(11, 15, 26, 0.62);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+      }
+      .wrap {
+        max-width: 980px;
+        margin: 0 auto;
+      }
+      h1 {
+        margin: 0;
+        font-size: 18px;
+        letter-spacing: 0.3px;
+      }
+      .sub {
+        margin-top: 6px;
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 13px;
+        line-height: 1.4;
+      }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 12px;
+        align-items: center;
+      }
+      .pill {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        padding: 8px 10px;
+        border-radius: 999px;
+        font-family: var(--mono);
+        font-size: 12px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .pill.ok {
+        color: rgba(134, 239, 172, 0.95);
+        border-color: rgba(134, 239, 172, 0.28);
+      }
+      .pill.warn {
+        color: rgba(251, 191, 36, 0.95);
+        border-color: rgba(251, 191, 36, 0.28);
+      }
+      .pill.bad {
+        color: rgba(251, 113, 133, 0.95);
+        border-color: rgba(251, 113, 133, 0.35);
+      }
+      button {
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+        padding: 10px 12px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 800;
+        letter-spacing: 0.2px;
+        user-select: none;
+      }
+      button:hover {
+        background: rgba(255, 255, 255, 0.09);
+      }
+      button.accent {
+        border-color: rgba(125, 211, 252, 0.45);
+        background: rgba(125, 211, 252, 0.12);
+      }
+      button.accent:hover {
+        background: rgba(125, 211, 252, 0.18);
+      }
+      button.danger {
+        border-color: rgba(251, 113, 133, 0.40);
+        background: rgba(251, 113, 133, 0.12);
+      }
+      button.danger:hover {
+        background: rgba(251, 113, 133, 0.18);
+      }
+      button.big {
+        padding: 14px 16px;
+        border-radius: 16px;
+        font-size: 14px;
+      }
+      main {
+        padding: 18px 16px 60px;
+      }
+      .grid {
+        max-width: 980px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        padding: 14px;
+      }
+      .card h2 {
+        margin: 0 0 10px 0;
+        font-size: 14px;
+        letter-spacing: 0.3px;
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .ctrl {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
+        align-items: stretch;
+      }
+      .ctrl button {
+        width: 100%;
+      }
+      .ctrl .spacer {
+        background: transparent;
+        border: 1px dashed rgba(255, 255, 255, 0.14);
+        border-radius: 16px;
+        min-height: 52px;
+      }
+      .settings {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      @media (max-width: 720px) {
+        .settings {
+          grid-template-columns: 1fr;
+        }
+      }
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      label {
+        font-size: 12px;
+        color: var(--muted);
+        font-family: var(--mono);
+      }
+      input[type="number"] {
+        width: 100%;
+        padding: 10px 10px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: var(--panel2);
+        color: var(--text);
+        font-family: var(--mono);
+        font-weight: 800;
+      }
+      .toggle {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: var(--panel2);
+      }
+      .toggle input {
+        transform: scale(1.2);
+      }
+      .hint {
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.55;
+      }
+      code {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: rgba(125, 211, 252, 0.95);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <h1>CYOBot Crawler Control</h1>
+        <div id="sub" class="sub">Đang kết nối...</div>
+        <div class="row">
+          <span id="pill" class="pill warn">STATUS</span>
+          <button id="btnStop" class="danger big" type="button">STOP</button>
+          <button id="btnCenter" class="accent" type="button">Center</button>
+          <button id="btnOff" type="button">All Off</button>
+          <button id="btnReload" type="button">Reload</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="grid">
+        <div class="card">
+          <h2>Điều Khiển</h2>
+          <div class="ctrl" style="margin-bottom: 10px">
+            <button class="big accent" data-cmd="rotate_left" title="Q">Rotate Left</button>
+            <button class="big accent" data-cmd="forward" title="W">Forward</button>
+            <button class="big accent" data-cmd="rotate_right" title="E">Rotate Right</button>
+
+            <button class="big" data-cmd="lateral_left" title="A">Lateral Left</button>
+            <div class="spacer"></div>
+            <button class="big" data-cmd="lateral_right" title="D">Lateral Right</button>
+
+            <div class="spacer"></div>
+            <button class="big accent" data-cmd="backward" title="S">Backward</button>
+            <div class="spacer"></div>
+          </div>
+          <div class="hint">
+            Phím tắt: <code>W</code> forward, <code>S</code> backward, <code>A</code> lateral left,
+            <code>D</code> lateral right, <code>Q</code>/<code>E</code> rotate, <code>Space</code>
+            stop.
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Cấu Hình</h2>
+          <div class="settings">
+            <div class="field">
+              <label for="steps">Steps (mỗi lần bấm)</label>
+              <input id="steps" type="number" min="1" max="20" step="1" value="1" />
+              <div class="hint">
+                Mỗi step tương đương 1 chu kỳ gait (khoảng vài trăm ms). Tăng lên để robot đi xa hơn
+                mỗi lần bấm.
+              </div>
+            </div>
+            <div class="field">
+              <label>Hold Position</label>
+              <div class="toggle">
+                <input id="hold" type="checkbox" />
+                <div>
+                  <div style="font-weight: 800">Giữ lực servo</div>
+                  <div class="hint">
+                    Bật để servo giữ tư thế sau khi chạy lệnh. Tắt sẽ <code>all_off</code> sau khi
+                    hoàn thành (mát hơn nhưng chân có thể sụp).
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Ghi Chú An Toàn</h2>
+          <div class="hint">
+            Nếu robot bị kẹt hoặc servo rung mạnh: bấm <code>STOP</code>, sau đó <code>All Off</code>.
+            Không đặt robot lên mặt bàn dễ trượt khi test.
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      "use strict";
+
+      const sub = document.getElementById("sub");
+      const pill = document.getElementById("pill");
+      const stepsEl = document.getElementById("steps");
+      const holdEl = document.getElementById("hold");
+      const btnStop = document.getElementById("btnStop");
+      const btnCenter = document.getElementById("btnCenter");
+      const btnOff = document.getElementById("btnOff");
+      const btnReload = document.getElementById("btnReload");
+
+      let lastStatus = null;
+      let statusTimer = null;
+      let keyBlock = false;
+
+      function setPill(kind, text) {
+        pill.className = "pill " + kind;
+        pill.textContent = text;
+      }
+
+      function getSteps() {
+        let s = Number(stepsEl.value);
+        if (!Number.isFinite(s)) s = 1;
+        s = Math.floor(s);
+        if (s < 1) s = 1;
+        if (s > 20) s = 20;
+        stepsEl.value = String(s);
+        return s;
+      }
+
+      async function postJson(path, body) {
+        const res = await fetch(path, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body || {}),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) {
+          const err = (data && data.error) || ("HTTP " + res.status);
+          throw new Error(err);
+        }
+        return data;
+      }
+
+      async function fetchStatusOnce() {
+        const res = await fetch("/api/crawler/status", { cache: "no-store" });
+        const data = await res.json().catch(() => ({}));
+        lastStatus = data;
+        if (data && data.ok) {
+          const ip = data.ip || "?";
+          const q = typeof data.queueLen === "number" ? data.queueLen : "?";
+          const busy = data.busy ? "busy" : "idle";
+          sub.textContent = `IP: ${ip} | queue: ${q} | ${busy}`;
+          if (data.error) {
+            setPill("bad", "ERR");
+          } else if (data.busy || (data.queueLen || 0) > 0) {
+            setPill("warn", "RUN");
+          } else {
+            setPill("ok", "OK");
+          }
+        } else {
+          const err = (data && data.error) || "Không kết nối được API";
+          sub.textContent = err;
+          setPill("bad", "OFFLINE");
+        }
+      }
+
+      function startStatusPoll() {
+        if (statusTimer) clearInterval(statusTimer);
+        fetchStatusOnce();
+        statusTimer = setInterval(fetchStatusOnce, 600);
+      }
+
+      async function sendCmd(cmd) {
+        const steps = getSteps();
+        const hold = !!holdEl.checked;
+        try {
+          await postJson("/api/crawler/cmd", { cmd, steps, hold });
+          setPill("warn", "QUEUED");
+        } catch (e) {
+          setPill("bad", "ERR");
+          sub.textContent = e.message;
+        }
+      }
+
+      async function stopNow() {
+        try {
+          await postJson("/api/crawler/stop", {});
+          setPill("warn", "STOPPING");
+        } catch (e) {
+          setPill("bad", "ERR");
+          sub.textContent = e.message;
+        }
+      }
+
+      document.querySelectorAll("button[data-cmd]").forEach((btn) => {
+        btn.addEventListener("click", () => sendCmd(btn.getAttribute("data-cmd")));
+      });
+      btnStop.addEventListener("click", stopNow);
+      btnCenter.addEventListener("click", () => postJson("/api/crawler/center", {}).catch(() => {}));
+      btnOff.addEventListener("click", () => postJson("/api/crawler/all_off", {}).catch(() => {}));
+      btnReload.addEventListener("click", fetchStatusOnce);
+
+      // Keyboard shortcuts.
+      const keyMap = {
+        KeyW: "forward",
+        KeyS: "backward",
+        KeyA: "lateral_left",
+        KeyD: "lateral_right",
+        KeyQ: "rotate_left",
+        KeyE: "rotate_right",
+      };
+      window.addEventListener("keydown", (ev) => {
+        if (ev.repeat) return;
+        if (keyBlock) return;
+        if (ev.code === "Space") {
+          ev.preventDefault();
+          stopNow();
+          return;
+        }
+        const cmd = keyMap[ev.code];
+        if (!cmd) return;
+        ev.preventDefault();
+        // Block key spam for a short time.
+        keyBlock = true;
+        sendCmd(cmd).finally(() => setTimeout(() => (keyBlock = false), 250));
+      });
+
+      startStatusPoll();
+    </script>
+  </body>
+</html>
+

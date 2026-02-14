@@ -35,6 +35,9 @@ def constrain(val, min_val, max_val):
 
 class Robot:
     def __init__(self, SDA=17, SCL=18):
+        # External code (e.g. web control panel) can set this to True to request
+        # motion loops to stop as soon as possible.
+        self._abort = False
         self.pca = PCA9685(SDA=SDA, SCL=SCL)
         if "robot-config.json" in os.listdir("/sdcard/config"):
             print("config file found, loading...")
@@ -69,6 +72,15 @@ class Robot:
             self.leg3 = Leg(self.pca, 0, 1, 1, 1, 0, 0)
         self.DELAY_TIME = 0.002
 
+    def request_abort(self):
+        self._abort = True
+
+    def clear_abort(self):
+        self._abort = False
+
+    def _should_abort(self):
+        return self._abort is True
+
     def updateServoState(self):
         self.leg0.updateServoState()
         self.leg1.updateServoState()
@@ -99,6 +111,8 @@ class Robot:
         leg3CurrentLower = self.leg3.currentAngleLower
 
         for i in range(50):
+            if self._should_abort():
+                break
             self.leg0.currentAngleLower = constrain(leg0CurrentLower - i*0.02*leg0LowerDiff, -90, 90)
             self.leg0.currentAngleUpper = constrain(leg0CurrentUpper - i*0.02*leg0UpperDiff, -90, 90)
             self.leg1.currentAngleLower = constrain(leg1CurrentLower - i*0.02*leg1LowerDiff, -90, 90)
@@ -109,6 +123,10 @@ class Robot:
             self.leg3.currentAngleUpper = constrain(leg3CurrentUpper - i*0.02*leg3UpperDiff, -90, 90)
             self.updateServoState()
             time.sleep(self.DELAY_TIME)
+
+        if self._should_abort():
+            self.pca.all_off()
+            return
     
     def dynamicSingleServoAssignment(self, leg_index, new_upper, new_lower):
         legs = [self.leg0, self.leg1, self.leg2, self.leg3]
@@ -120,10 +138,16 @@ class Robot:
         legCurrentLower = legs[leg_index].currentAngleLower
 
         for i in range(50):
+            if self._should_abort():
+                break
             legs[leg_index].currentAngleLower = constrain(legCurrentLower - i*0.02*legLowerDiff, -90, 90)
             legs[leg_index].currentAngleUpper = constrain(legCurrentUpper - i*0.02*legUpperDiff, -90, 90)
             self.updateServoState()
             time.sleep(self.DELAY_TIME)
+
+        if self._should_abort():
+            self.pca.all_off()
+            return
     
     def readServoPosition(self, leg_index, joint_type):
         legs = [self.leg0, self.leg1, self.leg2, self.leg3]
@@ -154,6 +178,9 @@ class Robot:
 
     def twoPhaseGaitPropagation(self, gait, order=[1.0, 1.0, 1.0, 1.0]):
         for i in range(4):
+            if self._should_abort():
+                self.pca.all_off()
+                return
             self.dynamicServoAssignment(
               self.leg0.centerOffsetUpper + order[0]*self.leg0.upperOrientationWRTHead * gait[((i)*2+0)%8], self.leg0.centerOffsetLower + self.leg0.lowerOrientationWRTHead * gait[((i)*2+1)%8],
               self.leg1.centerOffsetUpper + order[1]*self.leg1.upperOrientationWRTHead * gait[((i+2)*2+0)%8], self.leg1.centerOffsetLower + self.leg1.lowerOrientationWRTHead * gait[((i+2)*2+1)%8],

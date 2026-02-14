@@ -39,13 +39,13 @@ void loop() {
 
     // Print in Serial Plotter–friendly format
     // Each value separated by tab
-    Serial.print(ax, 4);  Serial.print("\t");
-    Serial.print(ay, 4);  Serial.print("\t");
-    Serial.print(az, 4);  Serial.print("\t");
+    // Serial.print(ax, 4);  Serial.print("\t");
+    // Serial.print(ay, 4);  Serial.print("\t");
+    // Serial.print(az, 4);  Serial.print("\t");
 
-    Serial.print(gx, 4);  Serial.print("\t");
-    Serial.print(gy, 4);  Serial.print("\t");
-    Serial.print(gz, 4);  Serial.print("\t");
+    // Serial.print(gx, 4);  Serial.print("\t");
+    // Serial.print(gy, 4);  Serial.print("\t");
+    // Serial.print(gz, 4);  Serial.print("\t");
 
     Serial.print(orientation.yaw, 2);   Serial.print("\t");
     Serial.print(orientation.pitch, 2); Serial.print("\t");

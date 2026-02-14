@@ -1,52 +1,42 @@
 #include <Adafruit_NeoPixel.h>
+#include <WiFi.h>
+#include <time.h>
+#include <cstring>
 #include "CYOBot_NeoPixel.h"
-#include <list>
-//#include "pins_arduino_cyobrain_v2.h"
 
 #define LED_PIN NEO_BRAIN
-#define LED_COUNT 33
-#define MAX_CHAR_INDICES 25
-#define MAX_PIXEL_LIST 25
+
+constexpr char WIFI_SSID[] = "NHA PINK";
+constexpr char WIFI_PASSWORD[] = "pinkpink";
+constexpr char NTP_SERVER[] = "pool.ntp.org";
+constexpr long GMT_OFFSET_SEC = 7 * 3600;   // UTC+7
+constexpr int DAYLIGHT_OFFSET_SEC = 0;
+constexpr uint32_t WIFI_CONNECT_TIMEOUT_MS = 15000;
+
+constexpr uint32_t DISPLAY_INTERVAL_MS = 1000;
+constexpr uint32_t BUTTON_DEBOUNCE_MS = 40;
+constexpr uint32_t TIME_SCROLL_INTERVAL_MS = 150;
+constexpr uint8_t DISPLAY_WIDTH = 5;
+constexpr uint8_t CHAR_WIDTH = 5;
+constexpr uint8_t CHAR_SPACING = 1;
+constexpr uint8_t MAX_TIME_PATTERN_COLUMNS = 32;
 
 Adafruit_NeoPixel matrix(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 
-
-
-struct Pixel 
-{
-  uint8_t indices;
-  uint8_t red;
-  uint8_t green;
-  uint8_t blue;
+// Map 5x5 character grid indices to physical LEDs in the hex layout.
+const uint8_t HEX_LETTER_MAP[ROWS][5] = {
+    {0, 1, 2, 3, 4},
+    {6, 7, 8, 9, 10},
+    {14, 15, 16, 17, 18},
+    {22, 23, 24, 25, 26},
+    {28, 29, 30, 31, 32}
 };
 
 struct Alphabet
 {
-  char character;
-  uint8_t indicies[MAX_CHAR_INDICES];
-  uint8_t count;
-};
-
-struct OffsetPixelList
-{
-  int8_t offsetIndex;
-  int16_t pixels[25];
-};
-
-const struct OffsetPixelList offset_pixel_lists[] = {
-    {6, {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 12, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}},  // 6
-    {5, {-1, -1, -1, -1, -1, -1, -1, -1, -1,  5, -1, -1, -1, 12, 13, -1, -1, -1, -1, 21, -1, -1, -1, -1, -1}},  // 5
-    {4, {-1, -1, -1, -1,  0, -1, -1, -1,  5,  6, -1, -1, 12, 13, 14, -1, -1, -1, 21, 22, -1, -1, -1, -1, 28}},  // 4
-    {3, {-1, -1, -1,  0,  1, -1, -1,  5,  6,  7, -1, 12, 13, 14, 15, -1, -1, 21, 22, 23, -1, -1, -1, 28, 29}},  // 3
-    {2, {-1, -1,  0,  1,  2, -1,  5,  6,  7,  8, 12, 13, 14, 15, 16, -1, 21, 22, 23, 24, -1, -1, 28, 29, 30}},  // 2
-    {1, {-1,  0,  1,  2,  3,  5,  6,  7,  8,  9, 13, 14, 15, 16, 17, 21, 22, 23, 24, 25, -1, 28, 29, 30, 31}},  // 1
-    {0, { 0,  1,  2,  3,  4,  6,  7,  8,  9, 10, 14, 15, 16, 17, 18, 22, 23, 24, 25, 26, 28, 29, 30, 31, 32}},  // 0
-    {-1, { 1,  2,  3,  4, -1,  7,  8,  9, 10, 11, 15, 16, 17, 18, 19, 23, 24, 25, 26, 27, 29, 30, 31, 32, -1}},  // -1
-    {-2, { 2,  3,  4, -1, -1,  8,  9, 10, 11, -1, 16, 17, 18, 19, 20, 24, 25, 26, 27, -1, 30, 31, 32, -1, -1}},  // -2
-    {-3, { 3,  4, -1, -1, -1,  9, 10, 11, -1, -1, 17, 18, 19, 20, -1, 25, 26, 27, -1, -1, 31, 32, -1, -1, -1}},  // -3
-    {-4, { 4, -1, -1, -1, -1, 10, 11, -1, -1, -1, 18, 19, 20, -1, -1, 26, 27, -1, -1, -1, 32, -1, -1, -1, -1}},  // -4
-    {-5, {-1, -1, -1, -1, -1, 11, -1, -1, -1, -1, 19, 20, -1, -1, -1, 27, -1, -1, -1, -1, -1, -1, -1, -1, -1}},  // -5
-    {-6, {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 20, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}}   // -6
+    char character;
+    uint8_t indicies[MAX_CHAR_INDICES];
+    uint8_t count;
 };
 
 const Alphabet alphabet[] = {
@@ -86,118 +76,447 @@ const Alphabet alphabet[] = {
     {'7', {0, 1, 2, 3, 4, 8, 12, 16, 20}, 9},
     {'8', {1, 2, 3, 5, 9, 11, 12, 13, 15, 19, 21, 22, 23}, 13},
     {'9', {1, 2, 3, 5, 9, 11, 12, 13, 14, 19, 21, 22, 23}, 13},
-    {' ', {}, 0},
-    {'.', {22}, 1},
-    {'_', {20, 21, 22, 23, 24}, 5},
-    {'[', {0, 1, 5, 10, 15, 20, 21}, 7},
-    {']', {3, 4, 9, 14, 19, 23, 24}, 7},
-    {'!', {2, 7, 12, 22}, 4},
-    {'<', {4, 7, 10, 17, 24}, 5},
-    {'>', {0, 7, 14, 17, 20}, 5},
-    {',', {17, 21}, 2},
-    {'\'', {2, 7}, 2},
-    {(char)3, {5, 1, 6, 7, 3, 8, 9, 10, 11, 12, 13, 14, 16, 17, 18, 22}, 16},  // Heart symbol
     {':', {7, 17}, 2}
 };
 
 const int ALPHABET_SIZE = sizeof(alphabet) / sizeof(alphabet[0]);
 
+constexpr uint8_t BUTTON_NEXT_PIN = 4;
+constexpr uint8_t BUTTON_PREV_PIN = 38;
 
+constexpr char ALPHABET_MESSAGE[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+constexpr uint8_t ALPHABET_MESSAGE_LENGTH = sizeof(ALPHABET_MESSAGE) - 1;
 
-void pixel_init(Pixel* pixel, uint8_t index, uint8_t red, uint8_t green, uint8_t blue)
+enum DisplayMode : uint8_t
 {
-  pixel->indices = index;
-  pixel->red = red;
-  pixel->green = green;
-  pixel->blue = blue;
-}
+    MODE_ALPHABET = 0,
+    MODE_FACES,
+    MODE_TIME,
+    MODE_COUNT
+};
 
-void pixel_set(Pixel* pixel, int16_t red, int16_t green, int16_t blue)
+struct ButtonTracker
 {
-  if (red != -1 && red != pixel->red)
-  {
-    pixel->red = (uint8_t) red;
-  }
-  if (green != -1 && green != pixel->green)
-  {
-    pixel->green = (uint8_t) green;
-  }
-  if (blue != -1 && blue != pixel->blue)
-  {
-    pixel->blue = (uint8_t) blue;
-  }
-}
+    uint8_t pin;
+    uint8_t lastReading;
+    uint8_t stableState;
+    unsigned long lastChange;
+};
 
-void pixel_get_color(Pixel* pixel1, Pixel* pixel2)
+// Simple smile mapped to the hex layout described as:
+// --00000--
+// -0000000-
+// 000000000
+// -0000000-
+// --00000--
+// Only the LED indices listed below are lit for the face.
+const uint8_t FACE_SMILE[] = {
+    6, 10,          // eyes (row 1)
+    16,             // nose (row 2 centre)
+    23, 24, 25,     // upper mouth row
+    29, 30, 31      // lower mouth row
+};
+
+const uint8_t FACE_CUSTOM[] = {0, 4, 5, 7, 9, 11, 29, 30, 31};
+
+struct FaceExpression
 {
-  pixel1->red = pixel2->red;
-  pixel1->green = pixel2->green;
-  pixel1->blue = pixel2->blue;
-}
+    const uint8_t* indices;
+    uint8_t count;
+};
+
+const FaceExpression FACE_EXPRESSIONS[] = {
+    {FACE_SMILE, static_cast<uint8_t>(sizeof(FACE_SMILE) / sizeof(FACE_SMILE[0]))},
+    {FACE_CUSTOM, static_cast<uint8_t>(sizeof(FACE_CUSTOM) / sizeof(FACE_CUSTOM[0]))}
+};
+
+constexpr uint8_t FACE_COUNT = sizeof(FACE_EXPRESSIONS) / sizeof(FACE_EXPRESSIONS[0]);
+
+ButtonTracker buttonNext = {BUTTON_NEXT_PIN, HIGH, HIGH, 0};
+ButtonTracker buttonPrev = {BUTTON_PREV_PIN, HIGH, HIGH, 0};
+
+DisplayMode currentMode = MODE_ALPHABET;
+uint8_t alphabetIndex = 0;
+uint8_t faceIndex = 0;
+unsigned long lastStepTimestamp = 0;
+bool wifiConnected = false;
+
+uint8_t timePattern[ROWS][MAX_TIME_PATTERN_COLUMNS];
+uint8_t timePatternLength = 0;
+uint8_t timeScrollOffset = 0;
+int8_t timeScrollDirection = 1;
+int lastRenderedMinute = -1;
 
 void init_matrix()
 {
-  matrix.begin();
-  matrix.setBrightness(100);
-  matrix.show(); // Initialize all pixels to 'off'
+    matrix.begin();
+    matrix.setBrightness(50);
+    matrix.show(); // Initialize all pixels to 'off'
 }
 
-void clear_matrix()
+bool connect_wifi()
 {
-  matrix.clear();
+    WiFi.mode(WIFI_STA);
+    WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+    Serial.print("Connecting to WiFi");
+    unsigned long start = millis();
+    while (WiFi.status() != WL_CONNECTED && (millis() - start) < WIFI_CONNECT_TIMEOUT_MS)
+    {
+        delay(500);
+        Serial.print(".");
+    }
+    Serial.println();
+    wifiConnected = (WiFi.status() == WL_CONNECTED);
+    if (wifiConnected)
+    {
+        Serial.print("WiFi connected, IP: ");
+        Serial.println(WiFi.localIP());
+        configTime(GMT_OFFSET_SEC, DAYLIGHT_OFFSET_SEC, NTP_SERVER);
+    }
+    else
+    {
+        Serial.println("WiFi connection failed.");
+    }
+    return wifiConnected;
 }
 
-void reset_matrix()
+static uint8_t letter_index_to_led(uint8_t logical_index)
 {
-  for(int i = 0; i < LED_COUNT; i++)
-  {
-    matrix.setPixelColor(i, matrix.Color(0, 0, 0));
-  }
-  matrix.show();
+    uint8_t row = logical_index / 5;
+    uint8_t col = logical_index % 5;
+    return HEX_LETTER_MAP[row][col];
 }
 
-void set_all_matrix(Pixel pixel)
+static const Alphabet* find_alphabet_entry(char c)
 {
-  for(int i = 0; i < LED_COUNT; i++)
-  {
-    matrix.setPixelColor(i, matrix.Color(pixel.red, pixel.green, pixel.blue));
-  }
-  matrix.show();
+    for (uint8_t i = 0; i < ALPHABET_SIZE; i++)
+    {
+        if (alphabet[i].character == c)
+        {
+            return &alphabet[i];
+        }
+    }
+    return nullptr;
 }
 
-void set_manual_matrix(Pixel pixel)
+void build_pattern_from_text(const char* text, uint8_t pattern[ROWS][MAX_TIME_PATTERN_COLUMNS], uint8_t& length)
 {
-  matrix.setPixelColor(pixel.indices, matrix.Color(pixel.red, pixel.green, pixel.blue));
-  matrix.show();
+    for (uint8_t row = 0; row < ROWS; row++)
+    {
+        memset(pattern[row], 0, MAX_TIME_PATTERN_COLUMNS);
+    }
+    length = 0;
+
+    for (const char* ptr = text; *ptr != '\0'; ++ptr)
+    {
+        const Alphabet* entry = find_alphabet_entry(*ptr);
+        if (!entry)
+        {
+            length += CHAR_WIDTH + CHAR_SPACING;
+            continue;
+        }
+
+        for (uint8_t i = 0; i < entry->count && i < MAX_CHAR_INDICES; i++)
+        {
+            uint8_t logical_index = entry->indicies[i];
+            uint8_t row = logical_index / 5;
+            uint8_t col = logical_index % 5;
+            uint8_t destCol = length + col;
+            if (row < ROWS && destCol < MAX_TIME_PATTERN_COLUMNS)
+            {
+                pattern[row][destCol] = 1;
+            }
+        }
+        length += CHAR_WIDTH + CHAR_SPACING;
+    }
+    if (length >= CHAR_SPACING)
+    {
+        length -= CHAR_SPACING;
+    }
 }
 
-//void set_character(char c, int offset = 0, Pixel pixel = {5, 5, 5}, bool multiplex = false){
-//   uint8_t* test_nested_list[9] = {};
-//   uint8_t test[5] = {1, 2, 3, 4, 5};
-//   test_nested_list[0] = &test;
-//}
-
-void setup() 
+bool update_time_pattern(bool force)
 {
-  Serial.begin(9600);
-  init_matrix();
+    wifiConnected = (WiFi.status() == WL_CONNECTED);
+    struct tm timeinfo;
+    if (!getLocalTime(&timeinfo))
+    {
+        if (!wifiConnected)
+        {
+            connect_wifi();
+        }
+        else
+        {
+            configTime(GMT_OFFSET_SEC, DAYLIGHT_OFFSET_SEC, NTP_SERVER);
+        }
+        if (!getLocalTime(&timeinfo))
+        {
+            Serial.println("Failed to obtain time from NTP");
+            return false;
+        }
+    }
+
+    if (!force && timeinfo.tm_min == lastRenderedMinute)
+    {
+        return true;
+    }
+
+    char buffer[6];
+    strftime(buffer, sizeof(buffer), "%H:%M", &timeinfo);
+    Serial.print("Time (NTP): ");
+    Serial.println(buffer);
+    build_pattern_from_text(buffer, timePattern, timePatternLength);
+    lastRenderedMinute = timeinfo.tm_min;
+    timeScrollOffset = 0;
+    timeScrollDirection = 1;
+    return true;
+}
+
+void render_time_frame(uint32_t color)
+{
+    matrix.clear();
+    for (uint8_t row = 0; row < ROWS; row++)
+    {
+        for (uint8_t col = 0; col < DISPLAY_WIDTH; col++)
+        {
+            uint8_t sourceCol = timeScrollOffset + col;
+            if (sourceCol < timePatternLength && timePattern[row][sourceCol])
+            {
+                uint8_t led = HEX_LETTER_MAP[row][col];
+                matrix.setPixelColor(led, color);
+            }
+        }
+    }
+    matrix.show();
+}
+
+void step_time_animation()
+{
+    const uint32_t color = matrix.Color(255, 200, 0);
+    if (!update_time_pattern(false))
+    {
+        if (timePatternLength > 0)
+        {
+            render_time_frame(color);
+        }
+        return;
+    }
+
+    if (timePatternLength <= DISPLAY_WIDTH)
+    {
+        render_time_frame(color);
+        return;
+    }
+
+    uint8_t maxOffset = timePatternLength - DISPLAY_WIDTH;
+    if (timeScrollDirection > 0)
+    {
+        if (timeScrollOffset < maxOffset)
+        {
+            timeScrollOffset++;
+        }
+        else
+        {
+            timeScrollDirection = -1;
+            if (timeScrollOffset > 0)
+            {
+                timeScrollOffset--;
+            }
+        }
+    }
+    else
+    {
+        if (timeScrollOffset > 0)
+        {
+            timeScrollOffset--;
+        }
+        else
+        {
+            timeScrollDirection = 1;
+            if (timeScrollOffset < maxOffset)
+            {
+                timeScrollOffset++;
+            }
+        }
+    }
+
+    render_time_frame(color);
+}
+
+void display_pattern(const uint8_t* indices, uint8_t count, uint32_t color)
+{
+    matrix.clear();
+
+    for (uint8_t i = 0; i < count; i++)
+    {
+        uint8_t logical_index = indices[i];
+        if (logical_index < ROWS * 5)
+        {
+            uint8_t led = letter_index_to_led(logical_index);
+            matrix.setPixelColor(led, color);
+        }
+    }
+
+    matrix.show();
+}
+
+void display_character(char c, uint32_t color)
+{
+    const Alphabet* entry = find_alphabet_entry(c);
+    if (entry != nullptr)
+    {
+        display_pattern(entry->indicies, entry->count, color);
+    }
+    else
+    {
+        matrix.clear();
+        matrix.show();
+    }
+}
+
+void display_face(uint8_t index, uint32_t color)
+{
+    const FaceExpression& face = FACE_EXPRESSIONS[index % FACE_COUNT];
+    matrix.clear();
+
+    for (uint8_t i = 0; i < face.count; i++)
+    {
+        uint8_t led = face.indices[i];
+        if (led < LED_COUNT)
+        {
+            matrix.setPixelColor(led, color);
+        }
+    }
+
+    matrix.show();
+}
+
+void showCurrentPattern()
+{
+    const uint32_t color = matrix.Color(255, 200, 0);
+    if (currentMode == MODE_ALPHABET)
+    {
+        display_character(ALPHABET_MESSAGE[alphabetIndex], color);
+    }
+    else if (currentMode == MODE_FACES)
+    {
+        display_face(faceIndex, color);
+    }
+    else if (currentMode == MODE_TIME)
+    {
+        if (!update_time_pattern(true) && timePatternLength == 0)
+        {
+            return;
+        }
+        render_time_frame(color);
+    }
+}
+
+void stepCurrentMode()
+{
+    if (currentMode == MODE_ALPHABET)
+    {
+        alphabetIndex = static_cast<uint8_t>((alphabetIndex + 1) % ALPHABET_MESSAGE_LENGTH);
+        showCurrentPattern();
+    }
+    else if (currentMode == MODE_FACES)
+    {
+        faceIndex = static_cast<uint8_t>((faceIndex + 1) % FACE_COUNT);
+        showCurrentPattern();
+    }
+    else if (currentMode == MODE_TIME)
+    {
+        step_time_animation();
+    }
+}
+
+bool buttonPressed(ButtonTracker& button)
+{
+    bool changed = false;
+    uint8_t reading = static_cast<uint8_t>(digitalRead(button.pin));
+    unsigned long now = millis();
+
+    if (reading != button.lastReading)
+    {
+        button.lastChange = now;
+        button.lastReading = reading;
+    }
+
+    if ((now - button.lastChange) > BUTTON_DEBOUNCE_MS)
+    {
+        if (reading != button.stableState)
+        {
+            button.stableState = reading;
+            if (button.stableState == LOW)
+            {
+                changed = true;
+            }
+        }
+    }
+
+    return changed;
+}
+
+void switchMode(DisplayMode newMode)
+{
+    if (newMode == currentMode)
+    {
+        return;
+    }
+
+    currentMode = newMode;
+    alphabetIndex = 0;
+    faceIndex = 0;
+    if (currentMode == MODE_TIME)
+    {
+        timeScrollOffset = 0;
+        timeScrollDirection = 1;
+        update_time_pattern(true);
+    }
+    showCurrentPattern();
+    lastStepTimestamp = millis();
+}
+
+void handleButtons()
+{
+    if (buttonPressed(buttonNext))
+    {
+        switchMode(static_cast<DisplayMode>((currentMode + 1) % MODE_COUNT));
+    }
+    else if (buttonPressed(buttonPrev))
+    {
+        switchMode(static_cast<DisplayMode>((currentMode + MODE_COUNT - 1) % MODE_COUNT));
+    }
+}
+
+void setup()
+{
+    Serial.begin(9600);
+    init_matrix();
+    connect_wifi();
+
+    pinMode(BUTTON_NEXT_PIN, INPUT_PULLUP);
+    pinMode(BUTTON_PREV_PIN, INPUT_PULLUP);
+
+    buttonNext.lastReading = static_cast<uint8_t>(digitalRead(buttonNext.pin));
+    buttonNext.stableState = buttonNext.lastReading;
+    buttonPrev.lastReading = static_cast<uint8_t>(digitalRead(buttonPrev.pin));
+    buttonPrev.stableState = buttonPrev.lastReading;
+
+    showCurrentPattern();
+    lastStepTimestamp = millis();
 }
 
 void loop()
 {
-  Pixel pixel;
-  pixel_init(&pixel, 0, 0, 0, 0);
-  pixel_set(&pixel,100, 0, 20);
-//  Pixel pixel = {10, 20, 10};
-  set_all_matrix(pixel);
-  delay(5000);
-  //reset_matrix();
-  clear_matrix();
-  delay(5000);
-  set_manual_matrix(pixel);
-  delay(5000);
-  pixel_set(&pixel,100, 0, 255);
-  set_all_matrix(pixel);
-  delay(5000);
+    handleButtons();
+
+    uint32_t interval = (currentMode == MODE_TIME) ? TIME_SCROLL_INTERVAL_MS : DISPLAY_INTERVAL_MS;
+    unsigned long now = millis();
+    if (now - lastStepTimestamp >= interval)
+    {
+        lastStepTimestamp = now;
+        stepCurrentMode();
+    }
 }
 
