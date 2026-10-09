@@ -1,0 +1,4 @@
+.pio/
+reports/
+__pycache__/
+*.pyc

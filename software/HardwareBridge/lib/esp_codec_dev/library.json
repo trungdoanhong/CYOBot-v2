@@ -1,0 +1,1 @@
+{"name": "cyobot-esp-codec-drivers", "version": "2.7.0", "build": {"srcDir": ".", "includeDir": "include", "srcFilter": ["+<device/es8311/es8311.c>", "+<device/es7210/es7210.c>", "+<esp_codec_dev_vol.c>", "+<platform/esp_codec_dev_os.c>"], "flags": ["-I interface", "-I device/include", "-I device/priv_include"]}}

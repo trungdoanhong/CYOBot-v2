@@ -1,0 +1,36 @@
+name: Project checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  host:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: python scripts/check_project.py
+  firmware:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: software/HardwareBridge
+    env:
+      CYOBOT_WIFI_SSID: CI-build-only
+      CYOBOT_WIFI_PASSWORD: dummy-not-a-real-network
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python -m platformio run

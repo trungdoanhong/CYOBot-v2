@@ -1,0 +1,2 @@
+/* System-first and fully local; no font or tracking requests leave the PC. */
+@font-face{font-family:Nunito;src:url('/Nunito.ttf') format('truetype');font-weight:200 900;font-display:swap}

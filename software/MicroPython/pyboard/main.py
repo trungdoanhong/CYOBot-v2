@@ -1,6 +1,7 @@
 from lib.display import *
 from lib.network.microWebSrv import MicroWebSrv
 from lib.wireless import *
+from lib.servo_test import DualButtonHold, ServoSweep
 import machine
 import json
 import webrepl
@@ -26,6 +27,7 @@ mPlayer = None
 
 _crawler = None
 _crawler_error = None
+_crawler_init_lock = _thread.allocate_lock()
 
 _motion_lock = _thread.allocate_lock()
 _motion_queue = []  # (cmd:str, steps:int, hold:bool)
@@ -33,6 +35,10 @@ _motion_busy = False
 _motion_last = None
 _motion_stop = False
 _motion_thread_started = False
+_button_thread_started = False
+_servo_test_requested = False
+_servo_test_active = False
+_servo_sweep = ServoSweep()
 
 _CRAWLER_ALLOWED_CMDS = (
     "forward",
@@ -71,7 +77,10 @@ def _get_crawler():
     global _crawler, _crawler_error
     if _crawler is not None:
         return _crawler
+    _crawler_init_lock.acquire()
     try:
+        if _crawler is not None:
+            return _crawler
         from lib.kinematics import Crawler
 
         _crawler = Crawler()
@@ -81,6 +90,8 @@ def _get_crawler():
         _crawler = None
         _crawler_error = str(e)
         return None
+    finally:
+        _crawler_init_lock.release()
 
 
 def _bot_request_abort(bot):
@@ -215,31 +226,101 @@ def _crawler_debug_snapshot():
 
 def _ensure_motion_thread():
     global _motion_thread_started
-    if _motion_thread_started:
-        return
+    _motion_lock.acquire()
+    try:
+        if _motion_thread_started:
+            return
+        _motion_thread_started = True
+    finally:
+        _motion_lock.release()
     try:
         _thread.start_new_thread(_motion_worker, ())
-        _motion_thread_started = True
     except Exception as e:
         print("Motion thread start error:", e)
         _motion_thread_started = False
 
 
+def _toggle_servo_test():
+    global _servo_test_requested, _motion_stop
+    _motion_lock.acquire()
+    try:
+        _servo_test_requested = not _servo_test_requested
+        _motion_stop = True
+        _motion_queue[:] = []
+        if _crawler is not None:
+            _bot_request_abort(_crawler)
+    finally:
+        _motion_lock.release()
+
+
+def _button_worker():
+    global _button_thread_started, _crawler_error
+    try:
+        left = machine.Pin(4, machine.Pin.IN)
+        right = machine.Pin(38, machine.Pin.IN)
+        gesture = DualButtonHold()
+        while True:
+            if gesture.update(left.value() == 0, right.value() == 0, time.ticks_ms()):
+                _toggle_servo_test()
+            time.sleep_ms(20)
+    except Exception as e:
+        _crawler_error = "Button monitor: {}".format(e)
+        print(_crawler_error)
+        _request_stop()
+    finally:
+        _button_thread_started = False
+
+
+def _start_controls():
+    global _button_thread_started
+    _ensure_motion_thread()
+    if _button_thread_started:
+        return
+    _button_thread_started = True
+    try:
+        _thread.start_new_thread(_button_worker, ())
+        print("Crawler ready: hold both buttons for 3 seconds to toggle servo test")
+    except Exception:
+        _button_thread_started = False
+        raise
+
+
+def _servo_test_running():
+    _motion_lock.acquire()
+    try:
+        return _servo_test_requested or _servo_test_active
+    finally:
+        _motion_lock.release()
+
+
 def _request_stop():
-    global _motion_stop
+    global _motion_stop, _servo_test_requested
     _ensure_motion_thread()
     _motion_lock.acquire()
     try:
         _motion_stop = True
+        _servo_test_requested = False
         _motion_queue[:] = []
+        if _crawler is not None:
+            _bot_request_abort(_crawler)
     finally:
         _motion_lock.release()
-    bot = _get_crawler()
-    if bot is not None:
-        try:
-            _bot_request_abort(bot)
-        except:
-            pass
+
+
+def _queue_center():
+    global _motion_stop
+    _ensure_motion_thread()
+    _motion_lock.acquire()
+    try:
+        if _servo_test_requested or _servo_test_active:
+            return False
+        _motion_queue[:] = [("center", 1, True)]
+        _motion_stop = True
+        if _crawler is not None:
+            _bot_request_abort(_crawler)
+        return True
+    finally:
+        _motion_lock.release()
 
 
 def _enqueue_motion(cmd, steps=1, hold=False):
@@ -255,7 +336,7 @@ def _enqueue_motion(cmd, steps=1, hold=False):
 
     _motion_lock.acquire()
     try:
-        if len(_motion_queue) >= 24:
+        if _servo_test_requested or _servo_test_active or len(_motion_queue) >= 24:
             return False
         _motion_queue.append((cmd, steps, hold is True))
         return True
@@ -265,23 +346,56 @@ def _enqueue_motion(cmd, steps=1, hold=False):
 
 def _motion_worker():
     global _motion_busy, _motion_last, _motion_stop, _crawler_error
+    global _servo_test_active, _servo_test_requested
     while True:
-        # Emergency stop gets priority.
-        if _motion_stop:
-            bot = _get_crawler()
+        # Only this worker writes servo commands, including mode transitions.
+        _motion_lock.acquire()
+        try:
+            stop_requested = _motion_stop
+            _motion_stop = False
+            if stop_requested:
+                _servo_test_active = _servo_test_requested
+                _motion_busy = _servo_test_active
+            has_work = _servo_test_active or bool(_motion_queue)
+        finally:
+            _motion_lock.release()
+
+        if stop_requested:
+            bot = _crawler
             if bot is not None:
                 try:
-                    _bot_request_abort(bot)
                     bot.pca.all_off()
-                    _bot_clear_abort(bot)
                 except Exception as e:
                     _crawler_error = str(e)
-            _motion_lock.acquire()
+                    # An unavailable PCA must not cause an endless restart loop.
+                    _motion_lock.acquire()
+                    try:
+                        _servo_test_requested = False
+                        _servo_test_active = False
+                        _motion_queue[:] = []
+                        _motion_busy = False
+                    finally:
+                        _motion_lock.release()
+            _servo_sweep.reset()
             try:
-                _motion_stop = False
-            finally:
-                _motion_lock.release()
+                if _servo_test_active:
+                    ring.set_all((20, 8, 0))
+                else:
+                    ring.reset()
+            except Exception as e:
+                print("Mode indicator:", e)
+            print("Mode:", "SERVO TEST" if _servo_test_active else "CRAWLER")
             time.sleep_ms(20)
+            continue
+
+        if not has_work:
+            time.sleep_ms(20)
+            continue
+
+        bot = _get_crawler()
+        if bot is None:
+            _request_stop()
+            time.sleep_ms(100)
             continue
 
         cmd = None
@@ -289,7 +403,14 @@ def _motion_worker():
         hold = False
         _motion_lock.acquire()
         try:
-            if _motion_queue:
+            # A button/HTTP stop arriving during initialization wins.
+            if _motion_stop:
+                continue
+            testing = _servo_test_active
+            _bot_clear_abort(bot)
+            if testing:
+                _motion_busy = True
+            elif _motion_queue:
                 cmd, steps, hold = _motion_queue.pop(0)
                 _motion_busy = True
                 _motion_last = {
@@ -303,18 +424,24 @@ def _motion_worker():
         finally:
             _motion_lock.release()
 
+        if testing:
+            try:
+                angle = _servo_sweep.step(bot.pca, time.ticks_ms())
+                if angle is not None:
+                    # Keep Crawler's interpolation origin in sync with the test.
+                    for leg in (bot.leg0, bot.leg1, bot.leg2, bot.leg3):
+                        leg.setCurrentAngle(angle - 90, angle - 90)
+            except Exception as e:
+                _crawler_error = str(e)
+                _request_stop()
+            time.sleep_ms(20)
+            continue
+
         if cmd is None:
             time.sleep_ms(30)
             continue
 
-        bot = _get_crawler()
-        if bot is None:
-            time.sleep_ms(200)
-            continue
-
         try:
-            _bot_clear_abort(bot)
-
             if cmd == "center":
                 bot.center()
                 # center() ends with all_off() in current library.
@@ -336,10 +463,13 @@ def _motion_worker():
                 pass
         except Exception as e:
             _crawler_error = str(e)
+            _request_stop()
             try:
                 bot.pca.all_off()
             except:
                 pass
+        finally:
+            _motion_busy = False
 
         try:
             gc.collect()
@@ -362,7 +492,7 @@ def startup():
             mPlayer.play(startup_sound)
         else:
             mPlayer.play('file://sdcard/lib/data/robot-on.wav')
-        if startup_text != "":    
+        if startup_text != "":
             matrix.scroll(startup_text, red=150, green=10, blue=40, speed=0.05)
     except Exception as e:
         print("Startup error:", e)
@@ -390,7 +520,7 @@ def test_connect_wifi():
                 mPlayer = player(None)
                 mPlayer.set_vol(100)
             mPlayer.play('file://sdcard/lib/data/wifi-connecting.wav')
-            print("Connecting to WiFi:", content["wifi"]["ssid"], content["wifi"]["password"])
+            print("Connecting to WiFi:", content["wifi"]["ssid"])
             wifi.connect(content["wifi"]["ssid"], content["wifi"]["password"], verbose=True)
     except Exception as e:
         print("WiFi check and connect error:", e)
@@ -413,7 +543,7 @@ def check_and_connect_wifi():
         with open("/sdcard/config/robot-config.json") as file:
             content = json.loads(file.read())
         if content["wifi"]["ssid"] != "":
-            print("Connecting to WiFi:", content["wifi"]["ssid"], content["wifi"]["password"])
+            print("Connecting to WiFi:", content["wifi"]["ssid"])
             wifi.connect(content["wifi"]["ssid"], content["wifi"]["password"], verbose=True)
     except Exception as e:
         print("WiFi check and connect error:", e)
@@ -424,7 +554,7 @@ def check_and_connect_wifi():
             content = json.loads(file.read())
         content["pythonWebREPL"]["endpoint"] = "ws://{}:8266".format(wifi.wlan.ifconfig()[0])
         content["onboarding"]["hasProvidedWifiCredentials"] = True
-        
+
         with open("/sdcard/config/portal-config.json", "w") as outfile:
             outfile.write(json.dumps(content))
     else:
@@ -432,7 +562,7 @@ def check_and_connect_wifi():
             content = json.loads(file.read())
         content["pythonWebREPL"]["endpoint"] = "ws://192.168.4.1:8266"
         content["onboarding"]["hasProvidedWifiCredentials"] = False
-        
+
         with open("/sdcard/config/portal-config.json", "w") as outfile:
             outfile.write(json.dumps(content))
 
@@ -474,7 +604,7 @@ def getWiFiAPList():
             return 2
         else:
             return 3
-    
+
     try:
         ap_list = wifi.wlan.scan()
     except:
@@ -558,7 +688,7 @@ def _httpHandlerPostWiFiCredential(httpClient, httpResponse):
             content = json.loads(file.read())
         content["pythonWebREPL"]["endpoint"] = "ws://{}:8266".format(wifi.wlan.ifconfig()[0])
         content["onboarding"]["hasProvidedWifiCredentials"] = True
-        
+
         with open("/sdcard/config/portal-config.json", "w") as outfile:
             outfile.write(json.dumps(content))
 
@@ -575,7 +705,7 @@ def _httpHandlerPostWiFiCredential(httpClient, httpResponse):
             'Access-Control-Allow-Methods': '*',
             'Access-Control-Allow-Headers': '*'
         })
-        
+
         time.sleep(2)
         with open("state", "w") as file:
             file.write("2")
@@ -593,15 +723,15 @@ def _httpHandlerPostWiFiCredential(httpClient, httpResponse):
 def _httpHandlerPostConfig(httpClient, httpResponse):
     data = httpClient.ReadRequestContentAsJSON()
     print(data)
-    
+
     try:
         with open("/sdcard/config/portal-config.json") as file:
             content = json.loads(file.read())
         content["pythonWebREPL"]["endpoint"] = data["wsEndpoint"]
-        
+
         with open("/sdcard/config/portal-config.json", "w") as outfile:
             outfile.write(json.dumps(content))
-        
+
         httpResponse.WriteResponseOk(headers={
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': '*',
@@ -657,6 +787,8 @@ def _httpHandlerCrawlerStatus(httpClient, httpResponse):
         busy = _motion_busy
         last = _motion_last
         stop = _motion_stop
+        mode = "servo_test" if _servo_test_active else "crawler"
+        requested_mode = "servo_test" if _servo_test_requested else "crawler"
     finally:
         _motion_lock.release()
 
@@ -668,6 +800,10 @@ def _httpHandlerCrawlerStatus(httpClient, httpResponse):
         "queueLen": qlen,
         "busy": busy,
         "stopRequested": stop,
+        "mode": mode,
+        "requestedMode": requested_mode,
+        "servoTestAngle": _servo_sweep.angle,
+        "buttonsReady": _button_thread_started,
         "last": last,
         "error": _crawler_error,
         "crawler": crawler,
@@ -699,6 +835,10 @@ def _httpHandlerCrawlerCmd(httpClient, httpResponse):
         httpResponse.WriteResponseJSONError(400, obj={"error": "Invalid cmd"},)
         return
 
+    if _servo_test_running():
+        httpResponse.WriteResponseJSONError(409, obj={"error": "Servo test active; hold both buttons for 3 seconds or press STOP to exit"})
+        return
+
     ok = _enqueue_motion(cmd, steps=steps, hold=hold is True)
     if not ok:
         httpResponse.WriteResponseJSONError(429, obj={"error": "Queue full"})
@@ -725,25 +865,9 @@ def _httpHandlerCrawlerCenterOptions(httpClient, httpResponse):
 
 @MicroWebSrv.route('/api/crawler/center', 'POST')
 def _httpHandlerCrawlerCenter(httpClient, httpResponse):
-    global _motion_stop
-    # Abort current motion and clear queue, then center.
-    bot = _get_crawler()
-    if bot is not None:
-        try:
-            _bot_request_abort(bot)
-        except:
-            pass
-
-    _motion_lock.acquire()
-    try:
-        _motion_queue[:] = []
-        _motion_stop = False
-    finally:
-        _motion_lock.release()
-
-    ok = _enqueue_motion("center", steps=1, hold=True)
+    ok = _queue_center()
     if not ok:
-        httpResponse.WriteResponseJSONError(429, obj={"error": "Queue full"})
+        httpResponse.WriteResponseJSONError(409, obj={"error": "Exit servo test before centering the Crawler"})
         return
     httpResponse.WriteResponseJSONOk(obj={"ok": True}, headers=_cors_headers())
 
@@ -755,36 +879,26 @@ def _httpHandlerCrawlerAllOffOptions(httpClient, httpResponse):
 
 @MicroWebSrv.route('/api/crawler/all_off', 'POST')
 def _httpHandlerCrawlerAllOff(httpClient, httpResponse):
-    global _motion_stop
-    # Abort current motion and clear queue, then all_off.
-    bot = _get_crawler()
-    if bot is not None:
-        try:
-            _bot_request_abort(bot)
-        except:
-            pass
-
-    _motion_lock.acquire()
-    try:
-        _motion_queue[:] = []
-        _motion_stop = False
-    finally:
-        _motion_lock.release()
-
-    ok = _enqueue_motion("all_off", steps=1, hold=True)
-    if not ok:
-        httpResponse.WriteResponseJSONError(429, obj={"error": "Queue full"})
-        return
+    _request_stop()
     httpResponse.WriteResponseJSONOk(obj={"ok": True}, headers=_cors_headers())
 
 
 srv = MicroWebSrv(webPath='/sdcard/portal/')
-srv.Start(threaded=True)
+# Status requests build a crawler diagnostic snapshot and need more native stack
+# than this firmware's default MicroPython thread allocation.
+try:
+    _thread.stack_size(8192)
+    srv.Start(threaded=True)
+finally:
+    _thread.stack_size(0)
 
 def wait_for_websocket():
     global wifi
     global matrix
     global ring
+
+    # Start even without a browser, and keep monitoring after WebREPL connects.
+    _start_controls()
 
     if wifi.wlan.isconnected():
         # display IP address on screen
@@ -793,15 +907,15 @@ def wait_for_websocket():
         ip_address = wifi.wlan.ifconfig()[0]
         character_list = [char for char in ip_address]
         offset_list = [(-7*i) for i in range(len(character_list))]
-        
+
         matrix.reset()
         for i in range(len(character_list)):
             if offset_list[i] <= 6 and offset_list[i] >=-6:
                 matrix.set_character(character_list[i], offset = offset_list[i] // 1, multiplex = True, blue = 100)
         matrix.np.write()
-        
+
         redraw = False
-        
+
         while webrepl.client_s is None:
             redraw = False
 
@@ -813,7 +927,7 @@ def wait_for_websocket():
                 for i in range(len(offset_list)):
                     offset_list.append(offset_list.pop(0) - 0.1)
                 redraw = True
-            
+
             if redraw:
                 matrix.reset()
                 for i in range(len(character_list)):
@@ -841,21 +955,21 @@ with open("state") as file:
 if state == "0": # startup sequence
     with open("state", "w") as file:
         file.write("1")
-    
+
     startup()
     machine.reset()
 
 elif state == "1": # AP mode
     with open("state", "w") as file:
         file.write("0")
-    
+
     # check_and_connect_wifi()
     test_connect_wifi()
     if wifi.wlan.isconnected():
         with open("state", "w") as file:
             file.write("2")
         machine.reset()
-    
+
     init_ap()
     start_dns()
     last_wifi_ap_list = getWiFiAPList()
@@ -865,7 +979,7 @@ elif state == "1": # AP mode
 elif state == "2": # WiFi mode
     with open("state", "w") as file:
         file.write("0")
-    
+
     check_and_connect_wifi()
     init_ap()
     start_dns()

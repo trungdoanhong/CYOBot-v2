@@ -1,0 +1,4 @@
+# Studio and the Fleet SDK use only Python's standard library.
+# Optional tools for building firmware and deploying the legacy MicroPython app.
+platformio==6.2.0
+mpremote==1.27.0

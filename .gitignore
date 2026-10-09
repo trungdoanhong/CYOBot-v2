@@ -1,0 +1,25 @@
+# Python and local development environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.env
+.env.*
+!.env.example
+
+# Firmware builds and private settings
+.pio/
+wifi.local.json
+*.local.json
+wifi_config.h
+
+# Generated design work, reports and machine-specific backups
+/outputs/
+/work/
+*.FCBak
+*.FCStd1
+*.blend1
+*.log
+.DS_Store
+Thumbs.db

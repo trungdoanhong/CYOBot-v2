@@ -1,0 +1,27 @@
+* text=auto eol=lf
+*.py text eol=lf
+*.js text eol=lf
+*.cjs text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.ini text eol=lf
+*.h text eol=lf
+*.c text eol=lf
+*.cpp text eol=lf
+*.sh text eol=lf
+*.cmd text eol=crlf
+*.stl binary
+# Preserve exported URDF bytes for the source provenance checksums.
+*.urdf -text whitespace=cr-at-eol
+*.3mf binary
+*.step binary
+*.FCStd binary
+*.blend binary
+*.png binary
+*.jpg binary
+*.woff2 binary
+*.bin binary

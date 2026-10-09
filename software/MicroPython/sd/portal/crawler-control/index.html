@@ -246,6 +246,8 @@
             Phím tắt: <code>W</code> forward, <code>S</code> backward, <code>A</code> lateral left,
             <code>D</code> lateral right, <code>Q</code>/<code>E</code> rotate, <code>Space</code>
             stop.
+            Giữ đồng thời hai nút trên robot trong 3 giây để bật/tắt test servo.
+            Thả cả hai nút trước lần giữ tiếp theo. Vòng LED màu cam báo đang test.
           </div>
         </div>
 
@@ -339,9 +341,15 @@
           const ip = data.ip || "?";
           const q = typeof data.queueLen === "number" ? data.queueLen : "?";
           const busy = data.busy ? "busy" : "idle";
-          sub.textContent = `IP: ${ip} | queue: ${q} | ${busy}`;
+          const testing = data.mode === "servo_test" || data.requestedMode === "servo_test";
+          const mode = testing ? `TEST SERVO (${data.servoTestAngle ?? "..."}°)` : "CRAWLER";
+          sub.textContent = `IP: ${ip} | ${mode} | queue: ${q} | ${busy}`;
+          document.querySelectorAll("button[data-cmd]").forEach((btn) => { btn.disabled = testing; });
+          btnCenter.disabled = testing;
           if (data.error) {
             setPill("bad", "ERR");
+          } else if (testing) {
+            setPill("warn", "TEST SERVO");
           } else if (data.busy || (data.queueLen || 0) > 0) {
             setPill("warn", "RUN");
           } else {
@@ -361,6 +369,7 @@
       }
 
       async function sendCmd(cmd) {
+        if (lastStatus && (lastStatus.mode === "servo_test" || lastStatus.requestedMode === "servo_test")) return;
         const steps = getSteps();
         const hold = !!holdEl.checked;
         try {
@@ -419,4 +428,3 @@
     </script>
   </body>
 </html>
-

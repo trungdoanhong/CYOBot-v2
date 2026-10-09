@@ -1,0 +1,748 @@
+{
+  "source": "C:\\Users\\manhpc\\Documents\\Codex\\2026-09-27\\to\\outputs\\cyobot-web\\dist\\robot",
+  "copied_on": "2026-10-08",
+  "visual_meshes": 115,
+  "collision_meshes": 32,
+  "files": [
+    {
+      "path": "crawler.urdf",
+      "bytes": 61787,
+      "sha256": "a5d74af77ba0ee184b6e47244722488348554c6152fcf03ae8924f19bfdf0787"
+    },
+    {
+      "path": "meshes/base_link_collision_Body___battery_cover.stl",
+      "bytes": 9284,
+      "sha256": "6710beb003d215098581240aed2c3eb99bdbebb66a3b43bdfd88e645cc65f556"
+    },
+    {
+      "path": "meshes/base_link_collision_Body___hip_frame.stl",
+      "bytes": 95884,
+      "sha256": "6788e9b6105fd8ca45cf613e1f7b0f753b478f094d92997c8e237db8248ff44f"
+    },
+    {
+      "path": "meshes/base_link_collision_Body___mechanics_board_holder.stl",
+      "bytes": 106484,
+      "sha256": "30b99e04aa3b00eb9666d8eb0e648701f4f3635d2578fe981f13eaeb9d70cbc2"
+    },
+    {
+      "path": "meshes/base_link_collision_Body___servo_clamp.stl",
+      "bytes": 4684,
+      "sha256": "58227fb1b67002bc6519493395d2879e6f6d1b734dae25487e27c0fdbb7dc31c"
+    },
+    {
+      "path": "meshes/base_link_collision_Head___bottom_cap.stl",
+      "bytes": 45684,
+      "sha256": "95e2a9bb7426bbfb7ccb376bb08c4312e9cb3d80404c07463bce96588585430c"
+    },
+    {
+      "path": "meshes/base_link_collision_Head___light_concentrator.stl",
+      "bytes": 2284,
+      "sha256": "48ae3a74015f7a9b06298b188c9754c397df9b78bea8f9f0cb59fcedfc19c071"
+    },
+    {
+      "path": "meshes/base_link_collision_Head___light_diffuser.stl",
+      "bytes": 140284,
+      "sha256": "527f7dfc5a5a0293884b0ace608a9363b33633360e0f5f3a154000fcdead33f8"
+    },
+    {
+      "path": "meshes/base_link_collision_Head___top_cap.stl",
+      "bytes": 60284,
+      "sha256": "b8b33d31828f1887780f71086d7e1f9e0dbca431a14ff291c77a5ed308ad475d"
+    },
+    {
+      "path": "meshes/base_link_collision_Head_clamp_1___latch.stl",
+      "bytes": 12884,
+      "sha256": "2312b3d5525e921b996027b85ce6f85faa16017165c4c1a19ba86edb85f30cbf"
+    },
+    {
+      "path": "meshes/base_link_collision_Head_clamp_2___latch.stl",
+      "bytes": 12884,
+      "sha256": "ac7446922cbfb30672384977787297719807533f41893b7b59baa78dc73cd746"
+    },
+    {
+      "path": "meshes/base_link_collision_Head_clamp_3___latch.stl",
+      "bytes": 13284,
+      "sha256": "2af508d8c6f91693113ea8b7dfe1b2aa65cede581b639246a6060c10957f418d"
+    },
+    {
+      "path": "meshes/base_link_collision_Head_clamp_4___latch.stl",
+      "bytes": 12884,
+      "sha256": "f47cedaebb91528757915c437c07ecb4f95097b796a9d573957180894a8ba85b"
+    },
+    {
+      "path": "meshes/base_link_collision_Leg_1___hip_servo_holder.stl",
+      "bytes": 18184,
+      "sha256": "f16143d7111775940beaf627b957544cf562eec6de58da82cf4ae9fe99ce5b87"
+    },
+    {
+      "path": "meshes/base_link_collision_Leg_2___hip_servo_holder.stl",
+      "bytes": 18184,
+      "sha256": "fa8e420905c981a0d5bba5c62254ee0e2472cfb24dedb085d64c243381551728"
+    },
+    {
+      "path": "meshes/base_link_collision_Leg_3___hip_servo_holder.stl",
+      "bytes": 18184,
+      "sha256": "8ee07af54f778e14d2d31f04af7ae8598b365a786ac6797d34aeec109390d148"
+    },
+    {
+      "path": "meshes/base_link_collision_Leg_4___hip_servo_holder.stl",
+      "bytes": 18184,
+      "sha256": "679b43a7ab7bfbc7e85dd2f8923a6422c6ae572b6b1a7f2dd5369909ef4c0ca1"
+    },
+    {
+      "path": "meshes/base_link_visual_Actuator_1_hip___case.stl",
+      "bytes": 9484,
+      "sha256": "39e5287a790f3c525136feacafdbbf0c29e7cca9acde04e8aa04f33dd371cf6f"
+    },
+    {
+      "path": "meshes/base_link_visual_Actuator_1_hip___gearbox.stl",
+      "bytes": 28684,
+      "sha256": "b5a6e5118aa78734f22683be989d3ee210d35d4722cc21c5b74199b8d5d94bfd"
+    },
+    {
+      "path": "meshes/base_link_visual_Actuator_1_hip___label.stl",
+      "bytes": 9484,
+      "sha256": "6a019b09ee922038c8dfc69c1bdce5c479d47260f41112546f462030f035a773"
+    },
+    {
+      "path": "meshes/base_link_visual_Actuator_1_hip___mounting_flange.stl",
+      "bytes": 9484,
+      "sha256": "fc50ffda01de8c4f206d1f1fa80f31b593033f3f453fef24569a607ef87579f8"
+    },
+    {
+      "path": "meshes/base_link_visual_Actuator_2_hip___case.stl",
+      "bytes": 9484,
+      "sha256": "0461e0eff45c58b6256ec8e13951ae9ac77a78635d88c1a0a68c1f9c9e76ac37"
+    },
+    {
+      "path": "meshes/base_link_visual_Actuator_2_hip___gearbox.stl",
+      "bytes": 28684,
+      "sha256": "05ad4cc02dd8d6bcfc69d6c9ed06a23746a2c57eb2d0e4075d7bb2be25d57a96"
+    },
+    {
+      "path": "meshes/base_link_visual_Actuator_2_hip___label.stl",
+      "bytes": 9484,
+      "sha256": "acbf05c69fb38fe71ca6e1d0baeb89c8708ce7b50b31e60c9881b765507eee36"
+    },
+    {
+      "path": "meshes/base_link_visual_Actuator_2_hip___mounting_flange.stl",
+      "bytes": 9484,
+      "sha256": "c26f24efe31ce704275b80666fa10d8ec019552c3b9314f2ddb26e04dde54365"
+    },
+    {
+      "path": "meshes/base_link_visual_Actuator_3_hip___case.stl",
+      "bytes": 9484,
+      "sha256": "4ad9df8ced66616ebf019ad6ce920ed95c0add34c1a2f380c642e2af22255bb8"
+    },
+    {
+      "path": "meshes/base_link_visual_Actuator_3_hip___gearbox.stl",
+      "bytes": 28684,
+      "sha256": "5fcfd4fc0f7d9eb0a06ba04fedc38adfa3834fa8a793198569528b913a600195"
+    },
+    {
+      "path": "meshes/base_link_visual_Actuator_3_hip___label.stl",
+      "bytes": 9484,
+      "sha256": "9098b06cf39f1e6d32aafe4aadcf05dccb6ab93563b2e6ca73a308c48399e5e2"
+    },
+    {
+      "path": "meshes/base_link_visual_Actuator_3_hip___mounting_flange.stl",
+      "bytes": 9484,
+      "sha256": "8a554854ab55494e0ca9b793962b6e703971cd611858d34e79c0dd632c96b5c9"
+    },
+    {
+      "path": "meshes/base_link_visual_Actuator_4_hip___case.stl",
+      "bytes": 9484,
+      "sha256": "8b0377b60b82324a314b8b22d85a2b843f833aae05abd0c5815c02e8bc6d5229"
+    },
+    {
+      "path": "meshes/base_link_visual_Actuator_4_hip___gearbox.stl",
+      "bytes": 28684,
+      "sha256": "7bc0a7447d0747f03cc04511fb884a9391aac8c9793a0fe82ab33b4f84869ed7"
+    },
+    {
+      "path": "meshes/base_link_visual_Actuator_4_hip___label.stl",
+      "bytes": 9484,
+      "sha256": "5b18e0c8c9e9c6eacf3e72f42c4fb5464f1967c21de895239ad0b3c50209898e"
+    },
+    {
+      "path": "meshes/base_link_visual_Actuator_4_hip___mounting_flange.stl",
+      "bytes": 9484,
+      "sha256": "82fb3064e47c56b43da6ce7e502d77055e65dcc899ec85d4c5b848d1463bd25e"
+    },
+    {
+      "path": "meshes/base_link_visual_Body___battery_cover.stl",
+      "bytes": 90484,
+      "sha256": "7906e69267cb03447cac5dbd43db4c29899b90d9142b1f8cc31bfd1c70c85a3d"
+    },
+    {
+      "path": "meshes/base_link_visual_Body___hip_frame.stl",
+      "bytes": 3113784,
+      "sha256": "b5fdf5bc43c1e409ff27c0319fa0968dc55f2735de83df496d524708f02bde80"
+    },
+    {
+      "path": "meshes/base_link_visual_Body___mechanics_board_holder.stl",
+      "bytes": 346984,
+      "sha256": "e453961f416fae52b5e6c811ed60be46d1bab1c7aa4636af473fcb2ab4712f2c"
+    },
+    {
+      "path": "meshes/base_link_visual_Body___servo_clamp.stl",
+      "bytes": 788484,
+      "sha256": "1c51f45543ead26560344067b75eaab8663be290cba5c118eb9921cb3d5e28e5"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___battery.stl",
+      "bytes": 5484,
+      "sha256": "e364e47cc2656f52199575ea8c27aa7c465f7e1f5258804972ce3ce7611b654b"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___board_1_connector_18.stl",
+      "bytes": 5484,
+      "sha256": "e99211e23788cdbef2a9f9faf74625015c35b42903658835fb28a5a899388269"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___board_1_connector__18.stl",
+      "bytes": 5484,
+      "sha256": "0be0ad4686d529eda08d1ddbbf94bd1bd5b2a4009007dfa5f0814b22c49dc51c"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___board_2_connector_18.stl",
+      "bytes": 5484,
+      "sha256": "8a19c122c504ffe8aa4dfe98cdc1ac45b0dc95bd121af84c98681e60d1e1c65a"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___board_2_connector__18.stl",
+      "bytes": 5484,
+      "sha256": "b15b3ec703eaeebcdca441dad41a6d86188e9fd611fc212244ce759c92ec4a71"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___display.stl",
+      "bytes": 5484,
+      "sha256": "b56083ec1584711273c25f635e7b5182be0b36b5a4bd27a1470e6f5b8de36c7e"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___LED_1.stl",
+      "bytes": 5484,
+      "sha256": "e0b50d9ad3aeb56c893fe28a06ad2754fccc1e576d8076eaadb073a46bdb710b"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___LED_10.stl",
+      "bytes": 5484,
+      "sha256": "002ff989d090a8243cd7e4b7a03b2eca0cf8575f14cd09e839422cc05c10673c"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___LED_11.stl",
+      "bytes": 5484,
+      "sha256": "a2838a57a81814b2520cb381eedfab7388bf2fb615d8b60898f27e2e9dc5bbfe"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___LED_12.stl",
+      "bytes": 5484,
+      "sha256": "dec0056869bf739e0ae7bfd1fd958d290b9b4c7890b675cd5b76139dffe18fde"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___LED_13.stl",
+      "bytes": 5484,
+      "sha256": "013427900694ce0808d61f670b3a16291d879e2a4c71e0abea35b085c505a1c6"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___LED_14.stl",
+      "bytes": 5484,
+      "sha256": "8cc04b255206d5fcff5b3e07e69f9e5d7210570befa4be7e7b1ec537658e8617"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___LED_15.stl",
+      "bytes": 5484,
+      "sha256": "50784728f22fba3b01d136030c36dc6f58c216304ceac2da196a57704864aa2e"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___LED_16.stl",
+      "bytes": 5484,
+      "sha256": "4b3994052fa1acc83a6efbeebc064299cc181cdbc15b63b47931b057e40b7204"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___LED_2.stl",
+      "bytes": 5484,
+      "sha256": "44f6b038c57ee6f03d59023ffc9e63cdffdad837036d9401f08495194d96ce9f"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___LED_3.stl",
+      "bytes": 5484,
+      "sha256": "ffdb101bece154a3b722c91323aa9e1d288929d2f88484705d62697482c66d5f"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___LED_4.stl",
+      "bytes": 5484,
+      "sha256": "12b1ce1fb5fe4b58912d297b57164178c4684a16e36f2e9750ae65c2ab119e11"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___LED_5.stl",
+      "bytes": 5484,
+      "sha256": "6ba8f2d4f41eec4dc36da4fb4c62fb1b53aa3edff904018ea607fe4fcad9a53b"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___LED_6.stl",
+      "bytes": 5484,
+      "sha256": "f0ce228cffc31fbdbcbef506c885322af3b1c51f5663e2bc249586d86b4108ce"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___LED_7.stl",
+      "bytes": 5484,
+      "sha256": "44372c1cf07e87264b9b2167c872308b2565cf87253dc8b89703af5144e31a5a"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___LED_8.stl",
+      "bytes": 5484,
+      "sha256": "ef661c06cb04a5cbe1cc1addb101661391df123230c8cde383904d01c2d7f7ba"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___LED_9.stl",
+      "bytes": 5484,
+      "sha256": "d17e7d09ae590ef5c8f2df957e5df466a759c3475a0aff3b4a19216a7ed153eb"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___main_circular_PCB.stl",
+      "bytes": 38284,
+      "sha256": "24557bef2658e328b8e45c065b6d2ba89c52b9f24ba39de05b3e578a0324110d"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___mechanics_board_1.stl",
+      "bytes": 5484,
+      "sha256": "94191fcc59af009ee263c3f755a16b7b0ece2d6a7d043f18ce823521501b1fc0"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___mechanics_board_2.stl",
+      "bytes": 5484,
+      "sha256": "01ac01fbd52d08b7d6d289a07e56d353ef912577f40db2e0668a3d1d657e7cf3"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___power_connector.stl",
+      "bytes": 5484,
+      "sha256": "4f9d2d5aa3d7a0bcacf68406878d42f0b8049d780390657e86ae5b7f1df10857"
+    },
+    {
+      "path": "meshes/base_link_visual_Electronics___processor.stl",
+      "bytes": 5484,
+      "sha256": "69731152dc7e09dcc480e473e4cf3477713203ea5e1a6dd3b99e6fe607fbe7e0"
+    },
+    {
+      "path": "meshes/base_link_visual_Head___bottom_cap.stl",
+      "bytes": 415584,
+      "sha256": "8926b8cd28188a291302ff4ad75b4d8070e120a1cf0d662ba61b1522fa95c1b0"
+    },
+    {
+      "path": "meshes/base_link_visual_Head___light_concentrator.stl",
+      "bytes": 44484,
+      "sha256": "b169a3875d951e9cbae4f8bb1c5870b60c502d137154bfeb00b4f36b4c78e93f"
+    },
+    {
+      "path": "meshes/base_link_visual_Head___light_diffuser.stl",
+      "bytes": 791284,
+      "sha256": "7c05bbab3263642bdabf313d750a4ec972e382e3c660d45ea031aadf2cf492ad"
+    },
+    {
+      "path": "meshes/base_link_visual_Head___top_cap.stl",
+      "bytes": 573584,
+      "sha256": "a3137aa34b1725cb1ed8d41301ccb3fac85f987ae94e8d91dead4ef5cf545f0f"
+    },
+    {
+      "path": "meshes/base_link_visual_Head_clamp_1___latch.stl",
+      "bytes": 64284,
+      "sha256": "1571dfe306a147ac0b1017fd305631e6685a6f04f066ad008c263b31c6091a01"
+    },
+    {
+      "path": "meshes/base_link_visual_Head_clamp_2___latch.stl",
+      "bytes": 64284,
+      "sha256": "2e160ed1baa472482bf9676c18d5e1ed7391e65b6a47190ae343c9c6f8bb9337"
+    },
+    {
+      "path": "meshes/base_link_visual_Head_clamp_3___latch.stl",
+      "bytes": 64284,
+      "sha256": "b1ec805aafe0b602f9fbd08dba46ca4ef29dba62aeb123b37768f7810775e798"
+    },
+    {
+      "path": "meshes/base_link_visual_Head_clamp_4___latch.stl",
+      "bytes": 64284,
+      "sha256": "6462c19ec989a8ce98afe35fd4f7f26d147d54f017658754565548326a0a5e70"
+    },
+    {
+      "path": "meshes/base_link_visual_Leg_1___hip_servo_holder.stl",
+      "bytes": 207884,
+      "sha256": "af9bd51a76da3e9357a2d6c17f798a610d3594e390c0300ad12f38b3693163f9"
+    },
+    {
+      "path": "meshes/base_link_visual_Leg_2___hip_servo_holder.stl",
+      "bytes": 207884,
+      "sha256": "e6fd8131ae4c413694744f0750cf28296148a000190fa4b990d34a41a61015b6"
+    },
+    {
+      "path": "meshes/base_link_visual_Leg_3___hip_servo_holder.stl",
+      "bytes": 207884,
+      "sha256": "eb2cd0d70b6b58791d92d10bddb41db6a3b1fdc0e066cf08d33c68c82eb2a62f"
+    },
+    {
+      "path": "meshes/base_link_visual_Leg_4___hip_servo_holder.stl",
+      "bytes": 207884,
+      "sha256": "40aaebefff2fbab5b94f981b89d923ef60fce419876e6f379accad8c3cd5b1a3"
+    },
+    {
+      "path": "meshes/leg1_foot_collision_Leg_1___foot.stl",
+      "bytes": 9984,
+      "sha256": "1ba7b1f742b61b16750001671a284ae91f5038492512b2e6cfa55637abcff532"
+    },
+    {
+      "path": "meshes/leg1_foot_visual_Actuator_1_foot___case.stl",
+      "bytes": 9484,
+      "sha256": "fdb3a36b2836fbf1de3c15b30c17606b578cc17dcb80f97fc6555bf7f58d87f8"
+    },
+    {
+      "path": "meshes/leg1_foot_visual_Actuator_1_foot___gearbox.stl",
+      "bytes": 28684,
+      "sha256": "41bf346afd965c6426367a6363c8793d925056639520cbe7e236267f75ac554e"
+    },
+    {
+      "path": "meshes/leg1_foot_visual_Actuator_1_foot___label.stl",
+      "bytes": 9484,
+      "sha256": "7cec6e9cea34a7cc453f789674807c98aef5b0748fa70d7b8ea1907809d41bf7"
+    },
+    {
+      "path": "meshes/leg1_foot_visual_Actuator_1_foot___mounting_flange.stl",
+      "bytes": 9484,
+      "sha256": "a3ca5d278f833b3ed6125e9d19a93489f22dd4017dde7a06be79c275c7bc9a13"
+    },
+    {
+      "path": "meshes/leg1_foot_visual_Leg_1___foot.stl",
+      "bytes": 80984,
+      "sha256": "1e37d865542cdf6c2a32ed65de45b11fd1c81df4b1298c508c7189b26ea0e4b8"
+    },
+    {
+      "path": "meshes/leg1_hip_collision_Leg_1___hip_connector.stl",
+      "bytes": 38284,
+      "sha256": "43f7eda705a9afc3f79651685d85ca40c878a5cef96d2152c61acfbc58278be1"
+    },
+    {
+      "path": "meshes/leg1_hip_visual_Actuator_1_hip___fastener.stl",
+      "bytes": 28684,
+      "sha256": "5931bbcec6fe5bfbe8f19d752e79bf3c7bb921c9d26f29b1568ab46f7d039126"
+    },
+    {
+      "path": "meshes/leg1_hip_visual_Actuator_1_hip___screw_slot.stl",
+      "bytes": 9484,
+      "sha256": "ee8fa5bc79ae4cde39262e7c805da9255656609c2c53c957310e83a018b7dd3b"
+    },
+    {
+      "path": "meshes/leg1_hip_visual_Actuator_1_hip___spline.stl",
+      "bytes": 28684,
+      "sha256": "de67ad25a3008da8c2fb4cab3a4ccc20cbba25bd35315deac82915cf804f971b"
+    },
+    {
+      "path": "meshes/leg1_hip_visual_Leg_1___hip_connector.stl",
+      "bytes": 337584,
+      "sha256": "8bf1ae32b7e22023f1093ffc29a7e6b74af29a48c31d33c3352ab92d92fbde81"
+    },
+    {
+      "path": "meshes/leg1_lower_collision_Leg_1___lower_linkage.stl",
+      "bytes": 35084,
+      "sha256": "84ccf483b3d7e173d0cc0ad393df29026e36f88f34ad88e4ae77b2d0db8e6a43"
+    },
+    {
+      "path": "meshes/leg1_lower_visual_Actuator_1_foot___fastener.stl",
+      "bytes": 28684,
+      "sha256": "c35382509341bb0d024e02884e58c9240a8140f380b83c831295d8ddc95cc616"
+    },
+    {
+      "path": "meshes/leg1_lower_visual_Actuator_1_foot___screw_slot.stl",
+      "bytes": 9484,
+      "sha256": "53213fa4e267102bd416647f3bb8a8ac58f2f23a7b0c98ad5586408f02d24a69"
+    },
+    {
+      "path": "meshes/leg1_lower_visual_Actuator_1_foot___spline.stl",
+      "bytes": 28684,
+      "sha256": "3bbdbdce329d46c3569ffbeb269aa30e0cecb308c9094132969170c46fcbeb40"
+    },
+    {
+      "path": "meshes/leg1_lower_visual_Leg_1___lower_linkage.stl",
+      "bytes": 183884,
+      "sha256": "3982429c91088ca913d5366aa7d3b00dcfb248cf9278d6863e519350a57494df"
+    },
+    {
+      "path": "meshes/leg1_upper_collision_Leg_1___upper_linkage.stl",
+      "bytes": 35084,
+      "sha256": "05f44f9906ec65fa41c62f12c6ac9c01a98601f872dda92565f441a4b911d3a5"
+    },
+    {
+      "path": "meshes/leg1_upper_visual_Leg_1___upper_linkage.stl",
+      "bytes": 237684,
+      "sha256": "6989d6590d8f2b90cadaa9be9333fe01c77387029c081d0f5d750e66dbb1bcb8"
+    },
+    {
+      "path": "meshes/leg2_foot_collision_Leg_2___foot.stl",
+      "bytes": 9984,
+      "sha256": "38c7491b063b02c5ea03bb57c79819837595cfe837b9fdacce84e32446db3810"
+    },
+    {
+      "path": "meshes/leg2_foot_visual_Actuator_2_foot___case.stl",
+      "bytes": 9484,
+      "sha256": "85a67dc49251e5b3f72f750ae8314c66aadb1726c63a30051fc440ab53b315e5"
+    },
+    {
+      "path": "meshes/leg2_foot_visual_Actuator_2_foot___gearbox.stl",
+      "bytes": 28684,
+      "sha256": "a7da7149b9a66912cf08f1f15ac2b003d829ea352aa33b14d5fe939a0c97fe87"
+    },
+    {
+      "path": "meshes/leg2_foot_visual_Actuator_2_foot___label.stl",
+      "bytes": 9484,
+      "sha256": "616be5341b5475a75344792b2ce4ea91571c470e6b0a9498bb8dd3f5653966e9"
+    },
+    {
+      "path": "meshes/leg2_foot_visual_Actuator_2_foot___mounting_flange.stl",
+      "bytes": 9484,
+      "sha256": "e40f98d917f7fbf1430eb552cdfb99cb8c07643f36a8b4d247333089de9d611d"
+    },
+    {
+      "path": "meshes/leg2_foot_visual_Leg_2___foot.stl",
+      "bytes": 80984,
+      "sha256": "e07001f31b32aac5f8795ce4885bb2ee65110c854ced90874ffc64b55665a099"
+    },
+    {
+      "path": "meshes/leg2_hip_collision_Leg_2___hip_connector.stl",
+      "bytes": 38284,
+      "sha256": "3174f7dc33c5fd45f55d3163c0cffec9295ac8023145038b3d093f08bceec890"
+    },
+    {
+      "path": "meshes/leg2_hip_visual_Actuator_2_hip___fastener.stl",
+      "bytes": 28684,
+      "sha256": "0af1ec01e0cac9fb7bb3752724158de9b8e3993f2a3583bbd1dd25995727f71f"
+    },
+    {
+      "path": "meshes/leg2_hip_visual_Actuator_2_hip___screw_slot.stl",
+      "bytes": 9484,
+      "sha256": "ce5398d181815c30c477f1edeec5c876cc8cf5a5b5435249a3098609e5b64e25"
+    },
+    {
+      "path": "meshes/leg2_hip_visual_Actuator_2_hip___spline.stl",
+      "bytes": 28684,
+      "sha256": "73e23d67e14a7e3901377ebedaa2101dd2b8cbebb27e50bbea1f2392f3c7039c"
+    },
+    {
+      "path": "meshes/leg2_hip_visual_Leg_2___hip_connector.stl",
+      "bytes": 337584,
+      "sha256": "bebd0547833ac0cf430906fe17419367e7e4aeda0fdabc8b4120bab639b9011f"
+    },
+    {
+      "path": "meshes/leg2_lower_collision_Leg_2___lower_linkage.stl",
+      "bytes": 35084,
+      "sha256": "1727188555318136680033979767cc042ac16f72f05122c92b00d7c235780f83"
+    },
+    {
+      "path": "meshes/leg2_lower_visual_Actuator_2_foot___fastener.stl",
+      "bytes": 28684,
+      "sha256": "8e9bb653d935b93df1fdb312287d5168e012d062ebba37855aec3cbf115b32bf"
+    },
+    {
+      "path": "meshes/leg2_lower_visual_Actuator_2_foot___screw_slot.stl",
+      "bytes": 9484,
+      "sha256": "e8eb46317852b52e186429b236a044c1e6adf2b42b9bf278d5b9cc4885e46acc"
+    },
+    {
+      "path": "meshes/leg2_lower_visual_Actuator_2_foot___spline.stl",
+      "bytes": 28684,
+      "sha256": "bdcc766e880a1671850a5af419f29dc238caa031d67819b8cadeec3b95a6f7ad"
+    },
+    {
+      "path": "meshes/leg2_lower_visual_Leg_2___lower_linkage.stl",
+      "bytes": 183884,
+      "sha256": "9f5f32f4453e63567ccb2a2054b10adbd1a0fe3a312aabcde4ae596e6d2d78c7"
+    },
+    {
+      "path": "meshes/leg2_upper_collision_Leg_2___upper_linkage.stl",
+      "bytes": 35084,
+      "sha256": "5d0fa768546373721b97c26c9e0b2bf4b20e15157710e99153a7d188d5da1ce1"
+    },
+    {
+      "path": "meshes/leg2_upper_visual_Leg_2___upper_linkage.stl",
+      "bytes": 237684,
+      "sha256": "9e4a466e435ed1a853f8a7a1a08a346a845ca401038a977dddc813409862d252"
+    },
+    {
+      "path": "meshes/leg3_foot_collision_Leg_3___foot.stl",
+      "bytes": 9984,
+      "sha256": "5cbbefae50841b92f197b83a49eef767d3efc10745a0b8fd8407e3119af42495"
+    },
+    {
+      "path": "meshes/leg3_foot_visual_Actuator_3_foot___case.stl",
+      "bytes": 9484,
+      "sha256": "0bae233095dce3cc52affacba98ed6a66a602c877018239d7f25b6b51676f716"
+    },
+    {
+      "path": "meshes/leg3_foot_visual_Actuator_3_foot___gearbox.stl",
+      "bytes": 28684,
+      "sha256": "d8915d374f877a816d6ca969aa7343dbc69dc952174805bff7acee3f6469ef88"
+    },
+    {
+      "path": "meshes/leg3_foot_visual_Actuator_3_foot___label.stl",
+      "bytes": 9484,
+      "sha256": "8c3e770d617a7cff90be5ea764181538b3b42a45673048e8fefaec4bcf9d544d"
+    },
+    {
+      "path": "meshes/leg3_foot_visual_Actuator_3_foot___mounting_flange.stl",
+      "bytes": 9484,
+      "sha256": "5abbf7dbed0863df9a36bd8bdb0e5203277ad4c4f54631d527a45d3d3de554ff"
+    },
+    {
+      "path": "meshes/leg3_foot_visual_Leg_3___foot.stl",
+      "bytes": 80984,
+      "sha256": "02bb7829926dc322c128230f5b391e7c1e6caf345ffb9b1e163041bc498993df"
+    },
+    {
+      "path": "meshes/leg3_hip_collision_Leg_3___hip_connector.stl",
+      "bytes": 38284,
+      "sha256": "8e9836e77b9a42af95ea69b61d8bf632e5d1082074349d63ca4c8e3749efc7ad"
+    },
+    {
+      "path": "meshes/leg3_hip_visual_Actuator_3_hip___fastener.stl",
+      "bytes": 28684,
+      "sha256": "8dc96631302bf6aed90742539e59cb98583555bd8e3798f105d18ac9e82517c5"
+    },
+    {
+      "path": "meshes/leg3_hip_visual_Actuator_3_hip___screw_slot.stl",
+      "bytes": 9484,
+      "sha256": "0c4bd73b9962b1792c3afee2a51534e84ef87c0ec534b90790a46b034632a142"
+    },
+    {
+      "path": "meshes/leg3_hip_visual_Actuator_3_hip___spline.stl",
+      "bytes": 28684,
+      "sha256": "d8b74bb7186b976df5ce0cc5d1bcad2e380bf97a26aa9c1a91aea9194314aa95"
+    },
+    {
+      "path": "meshes/leg3_hip_visual_Leg_3___hip_connector.stl",
+      "bytes": 337584,
+      "sha256": "234616c56b9c74fef947d972e96d9823450ef8a35c7a8a47e7d1356f18d375c8"
+    },
+    {
+      "path": "meshes/leg3_lower_collision_Leg_3___lower_linkage.stl",
+      "bytes": 35084,
+      "sha256": "68e798f4269901c3358d1e202de48ce89c19890be84a735a4863a0917004bcf9"
+    },
+    {
+      "path": "meshes/leg3_lower_visual_Actuator_3_foot___fastener.stl",
+      "bytes": 28684,
+      "sha256": "1328136b3504672fcef1a37e9fc7fa773eabbce18319f44bd6b6a55a3846ddeb"
+    },
+    {
+      "path": "meshes/leg3_lower_visual_Actuator_3_foot___screw_slot.stl",
+      "bytes": 9484,
+      "sha256": "d5ca283eed812d4fdd003e6e9d58ac84d55510190ecfa20553b11de18da93be6"
+    },
+    {
+      "path": "meshes/leg3_lower_visual_Actuator_3_foot___spline.stl",
+      "bytes": 28684,
+      "sha256": "c631a6c2d8b704d1b2a0eba81dcb2d5848c6e2c90594d29f092e1742c2c7f14d"
+    },
+    {
+      "path": "meshes/leg3_lower_visual_Leg_3___lower_linkage.stl",
+      "bytes": 183884,
+      "sha256": "d810d9a481c39be29f43385cfd37dbcb6b06fcc6df8569e5a2625601d7cf1a22"
+    },
+    {
+      "path": "meshes/leg3_upper_collision_Leg_3___upper_linkage.stl",
+      "bytes": 35084,
+      "sha256": "6d53211d12d7261e1e97331738cf0fbf83fcb14197de33f688272a43a24c5ee7"
+    },
+    {
+      "path": "meshes/leg3_upper_visual_Leg_3___upper_linkage.stl",
+      "bytes": 237684,
+      "sha256": "a7fe957e9b41a66d6749f2499cc948ae7540eb070495df94ca4c562ec0caaabc"
+    },
+    {
+      "path": "meshes/leg4_foot_collision_Leg_4___foot.stl",
+      "bytes": 9984,
+      "sha256": "7fca73cbf62a160484c53b5e15f609feb1414d295ff23d4d09dddd5d2636204a"
+    },
+    {
+      "path": "meshes/leg4_foot_visual_Actuator_4_foot___case.stl",
+      "bytes": 9484,
+      "sha256": "274725e38ec98713464ea2776d605941a1c46b449f580abf128d05e83f0abd66"
+    },
+    {
+      "path": "meshes/leg4_foot_visual_Actuator_4_foot___gearbox.stl",
+      "bytes": 28684,
+      "sha256": "2e1bbe280567c906315c005ab5f7e4e32b00b9ec2a1a23e6f484d507ced6dd1e"
+    },
+    {
+      "path": "meshes/leg4_foot_visual_Actuator_4_foot___label.stl",
+      "bytes": 9484,
+      "sha256": "90b8a8dc1af7a7f53ac349927cf36f33a287733d3e19caaa0543a68f39b4bd79"
+    },
+    {
+      "path": "meshes/leg4_foot_visual_Actuator_4_foot___mounting_flange.stl",
+      "bytes": 9484,
+      "sha256": "be556169d512c8eb7256c786a3be6996768897a5169ae83c119322fb4ee8b23d"
+    },
+    {
+      "path": "meshes/leg4_foot_visual_Leg_4___foot.stl",
+      "bytes": 80984,
+      "sha256": "941a21ed9ff1bdac9359a79a84d3a493a681ed4f69ed71768eac75ae12da5f5b"
+    },
+    {
+      "path": "meshes/leg4_hip_collision_Leg_4___hip_connector.stl",
+      "bytes": 38284,
+      "sha256": "b9e99a309101507b5a81c87ef53ac7b4c5bb930d4848923573d52736ddc38527"
+    },
+    {
+      "path": "meshes/leg4_hip_visual_Actuator_4_hip___fastener.stl",
+      "bytes": 28684,
+      "sha256": "1489c0802f7928900d7b752e8e638985fe1972ea53f412d4673519bdcf7c2a25"
+    },
+    {
+      "path": "meshes/leg4_hip_visual_Actuator_4_hip___screw_slot.stl",
+      "bytes": 9484,
+      "sha256": "f8b48b19fd31d8e5ec4b2788d38bba8dd99ca7f6cb7ba214f10f5875249f60d3"
+    },
+    {
+      "path": "meshes/leg4_hip_visual_Actuator_4_hip___spline.stl",
+      "bytes": 28684,
+      "sha256": "fce7b55d58d1cf8d5e95a5e717a72353a86cc8bff59115476bb33b7935788a70"
+    },
+    {
+      "path": "meshes/leg4_hip_visual_Leg_4___hip_connector.stl",
+      "bytes": 337584,
+      "sha256": "6ee31983958bb150204ac814d706fea2a44436f75cfe5d46e58b1318474e0a2c"
+    },
+    {
+      "path": "meshes/leg4_lower_collision_Leg_4___lower_linkage.stl",
+      "bytes": 35084,
+      "sha256": "60e6cca56305bfe3cf1e6dc7c261347e4e9db2d14bfabf260828a2308957074c"
+    },
+    {
+      "path": "meshes/leg4_lower_visual_Actuator_4_foot___fastener.stl",
+      "bytes": 28684,
+      "sha256": "4eb1f010b9a73659f4534b3890734b71414fd8123b3a33867f9f3b0703335857"
+    },
+    {
+      "path": "meshes/leg4_lower_visual_Actuator_4_foot___screw_slot.stl",
+      "bytes": 9484,
+      "sha256": "b26ed84ce3481e7497af02e3190b6522efba0f0cedf21b9fb8a879d7adbca53d"
+    },
+    {
+      "path": "meshes/leg4_lower_visual_Actuator_4_foot___spline.stl",
+      "bytes": 28684,
+      "sha256": "3a48958d24e71c2fc332e568371b204a2bcc892c1e9b1a25a0c17b1bdb71be35"
+    },
+    {
+      "path": "meshes/leg4_lower_visual_Leg_4___lower_linkage.stl",
+      "bytes": 183884,
+      "sha256": "41beb3a0ff5bab0b5c4f30efe065f87679e921d55f9319511bed09b518ce4da3"
+    },
+    {
+      "path": "meshes/leg4_upper_collision_Leg_4___upper_linkage.stl",
+      "bytes": 35084,
+      "sha256": "c03de01c547a9ae18e46c8a3d805596620d4e6573ad3cc7b78c6465e2acb495f"
+    },
+    {
+      "path": "meshes/leg4_upper_visual_Leg_4___upper_linkage.stl",
+      "bytes": 237684,
+      "sha256": "8244eb50ed883579c5b0775b8314de73c20357fae9501c43333f9d50e2d251f0"
+    }
+  ]
+}

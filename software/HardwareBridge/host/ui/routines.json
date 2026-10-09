@@ -1,0 +1,8 @@
+{
+  "ready":{"label":"Ready pose","icon":"crosshair","frames":[{"seconds":1.5,"angles":[0,0,0,0,0,0,0,0]}]},
+  "bow":{"label":"Bow","icon":"arrow-down","frames":[{"seconds":1.5,"angles":[0,16,0,16,0,-8,0,-8]},{"seconds":0.8,"angles":[0,16,0,16,0,-8,0,-8]},{"seconds":1.5,"angles":[0,0,0,0,0,0,0,0]}]},
+  "wave":{"label":"Wave","icon":"wave","frames":[{"seconds":1.5,"angles":[0,-22,0,0,0,0,0,0]},{"seconds":0.8,"angles":[15,-22,0,0,0,0,0,0]},{"seconds":0.8,"angles":[-15,-22,0,0,0,0,0,0]},{"seconds":0.8,"angles":[15,-22,0,0,0,0,0,0]},{"seconds":1.5,"angles":[0,0,0,0,0,0,0,0]}]},
+  "sway":{"label":"Sway","icon":"move","frames":[{"seconds":1.5,"angles":[12,8,12,-8,12,8,12,-8]},{"seconds":1.5,"angles":[-12,-8,-12,8,-12,-8,-12,8]},{"seconds":1.5,"angles":[12,8,12,-8,12,8,12,-8]},{"seconds":1.5,"angles":[0,0,0,0,0,0,0,0]}]},
+  "stretch":{"label":"Stretch","icon":"plus","frames":[{"seconds":1.8,"angles":[-15,-12,15,-12,-15,-12,15,-12]},{"seconds":1.0,"angles":[-15,-12,15,-12,-15,-12,15,-12]},{"seconds":1.8,"angles":[0,0,0,0,0,0,0,0]}]},
+  "bounce":{"label":"Bounce","icon":"activity","frames":[{"seconds":1.0,"angles":[0,15,0,15,0,15,0,15]},{"seconds":1.0,"angles":[0,-8,0,-8,0,-8,0,-8]},{"seconds":1.0,"angles":[0,15,0,15,0,15,0,15]},{"seconds":1.5,"angles":[0,0,0,0,0,0,0,0]}]}
+}

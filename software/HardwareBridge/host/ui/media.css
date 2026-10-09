@@ -1,0 +1,85 @@
+.media-header{display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line);padding-bottom:18px;position:sticky;top:-24px;background:#fafcf7;z-index:2}
+.media-header h2{font-size:23px;letter-spacing:-.6px;margin:4px 0 0}
+.media-header>.icon-button{margin-left:auto}
+.media-badge{margin-left:auto;color:#91a08c;font:10px Consolas,monospace}
+.media-badge.live{color:#358761}
+.media-badge.live:before{content:'';display:inline-block;background:#6fb886;width:6px;height:6px;border-radius:50%;margin-right:8px;box-shadow:0 0 0 4px #d8eddc}
+.audio-route{display:flex;align-items:center;justify-content:center;margin:28px 0;gap:20px}
+.audio-end{display:flex;flex-direction:column;align-items:center;gap:7px;min-width:98px}
+.audio-end>i{width:62px;height:62px;border-radius:18px;background:#e5eedf;color:#5b8369}
+.audio-end svg{width:30px;height:30px}
+.audio-end strong{font-size:12px}
+.audio-end small{font-size:10px;color:#95a18d}
+.audio-link{display:flex;gap:10px;align-items:center;position:relative;color:#81b195}
+.audio-link>span{height:1px;width:35px;background:#c4d9c6}
+.audio-link svg{width:35px;height:35px}
+.audio-link small{position:absolute;top:36px;width:100%;text-align:center;font-size:9px;letter-spacing:1px;color:#9aab95}
+.audio-meters{display:grid;gap:12px;padding:18px;border:1px solid #e1e8da;border-radius:12px;background:#f2f6ed}
+.audio-meters>div{display:flex;gap:15px;align-items:center}
+.audio-meters span{color:#8a9c81;font:10px Consolas,monospace;white-space:nowrap}
+.audio-meters small{width:43px;text-align:right;font:9px Consolas,monospace;color:#8a9c81}
+.mic-meter{flex:1;height:10px;border-radius:3px;background:#e1e9da;overflow:hidden}
+.mic-meter>i{display:block;width:var(--level,0%);height:100%;background:repeating-linear-gradient(90deg,#78ae89 0 5px,transparent 5px 7px);transition:width .1s}
+.audio-buttons{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0 18px}
+.audio-buttons button{flex-direction:column;border:1px solid #dce5d6;border-radius:15px;padding:20px 8px;gap:10px;background:#f6f8f1}
+.audio-buttons button>i{width:42px;height:42px;border-radius:50%;background:#e5eddc;color:#7b9872}
+.audio-buttons strong{font-size:12px}
+.audio-buttons small{font-size:10px;color:#97a18f}
+.audio-buttons button.active{background:#e3f1e4;border-color:#85b499;color:#2e754e}
+.audio-buttons button.active>i{background:#81b499;color:white}
+.audio-file-row{display:flex;align-items:center;gap:12px}
+.audio-file-row>span{font-size:10px;color:#99a38f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.media-drawer label.secondary-button{display:inline-flex;align-items:center;gap:7px;border:1px solid #d5dfcc;border-radius:9px;padding:10px 13px;font-size:11px;cursor:pointer;white-space:nowrap;background:#f3f6ee}
+.media-drawer label input[type=file]{width:1px;height:1px;position:absolute;opacity:0}
+.media-drawer label:focus-within{outline:2px solid #448767;outline-offset:3px}
+.media-drawer label.disabled{opacity:.35;cursor:not-allowed}
+.audio-volume{display:flex;gap:16px;align-items:center;margin:24px 0;color:#8ca083}
+.audio-volume input{flex:1;min-width:30px}
+.audio-volume b{font:10px Consolas,monospace;min-width:34px;text-align:right}
+.audio-bottom{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:18px;gap:10px}
+.audio-bottom>div{display:flex;flex-direction:column;gap:7px;font-size:11px;color:#5f7859}
+.audio-bottom small{font:9px Consolas,monospace;color:#9ca792}
+.audio-bottom button{padding:10px 16px;border:1px solid #d5dfcc;border-radius:9px;font-size:11px}
+.sd-empty{min-height:360px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:25px;text-align:center}
+.sd-card-art{width:98px;height:112px;display:grid;place-items:center;background:#e8efde;border-radius:22px;color:#a0b38b;transform:rotate(-6deg);margin-bottom:22px}
+.sd-card-art svg{width:60px;height:60px;stroke-width:1}
+.sd-empty h3{font-size:18px;letter-spacing:-.4px;margin:0}
+.sd-empty p{font-size:11px;color:#9aaa8e;margin:10px 0 22px}
+.sd-empty button{border:1px solid #d5dfcc;padding:12px 20px;border-radius:10px;font-size:12px}
+.sd-toolbar{display:flex;align-items:center;gap:8px;margin:18px 0 14px;border:1px solid #dfe7d6;border-radius:10px;padding:4px}
+.sd-toolbar code{flex:1;font:11px Consolas,monospace;overflow:hidden;text-overflow:ellipsis;color:#71866a}
+.sd-actions{display:flex;align-items:center;gap:8px}
+.sd-actions>button.secondary-button{border:1px solid #d5dfcc;padding:10px 12px;font-size:11px;border-radius:9px}
+.sd-actions>.icon-button{margin-left:auto}
+.sd-rows{margin-top:18px}
+.sd-row{display:flex;gap:4px;align-items:center;border-bottom:1px solid #e6ecdf;padding:4px 0}
+.sd-file{flex:1;min-width:0;display:flex;justify-content:flex-start;padding:12px 8px;border-radius:8px;gap:12px}
+.file-symbol{font-size:24px;color:#92af7d}
+.sd-file strong{font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;text-align:left}
+.sd-file small{font:9px Consolas,monospace;color:#a0ac96;white-space:nowrap}
+.sd-footnote,.sd-list-empty{font-size:10px;color:#9daa90;text-align:center;margin:22px 0}
+.sd-progress{padding:12px;margin:12px 0;background:#e4f0dd;border-radius:8px;font-size:11px;color:#658855}
+#sd-dialog-hint{font-size:12px;color:#87977b;overflow-wrap:anywhere}
+#sd-name{width:100%;margin-bottom:18px}
+@media(max-width:1150px){.media-header{top:-18px}
+.studio-name,.brand-divider{display:none}
+.audio-link>span{width:15px}}
+@media(max-width:900px){.top-right{display:none}
+.audio-route{gap:10px}
+.audio-end{min-width:70px}
+.audio-link>span{width:10px}}
+@media(max-width:600px){.media-header{top:-20px}
+.audio-route{gap:12px}
+.audio-link>span{width:12px}
+.audio-end{min-width:65px}
+.media-badge{font-size:9px}
+.sd-file small{display:none}}
+@media(max-width:420px){.brand strong{display:none}
+.media-header{top:-16px}
+.audio-buttons{gap:8px}
+.audio-file-row{flex-wrap:wrap}
+.audio-bottom{align-items:flex-start}
+.audio-meters{padding:12px}
+.audio-end>i{width:52px;height:52px}
+.sd-empty{padding:12px}
+.media-header h2{font-size:20px}}

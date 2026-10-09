@@ -32,7 +32,28 @@ import time
 left = machine.Pin(4, machine.Pin.IN)
 right = machine.Pin(38, machine.Pin.IN)
 
-if left.value() == 0:
+def _recovery_requested():
+    # Recovery requires LEFT ONLY. A two-button hold belongs to servo test.
+    if left.value() != 0 or right.value() == 0:
+        return False
+    from lib.display import LEDRing
+    indicator = LEDRing()
+    indicator.reset()
+    started = time.ticks_ms()
+    progress = -1
+    while time.ticks_diff(time.ticks_ms(), started) < 3000:
+        if left.value() != 0 or right.value() == 0:
+            indicator.reset()
+            return False
+        step = min(11, time.ticks_diff(time.ticks_ms(), started) // 250)
+        if step != progress:
+            indicator.set_manual(step, (100, 0, 0))
+            progress = step
+        time.sleep_ms(20)
+    return left.value() == 0 and right.value() != 0
+
+
+if _recovery_requested():
     from lib.display import *
     from audio import player
     
@@ -47,31 +68,6 @@ if left.value() == 0:
     mPlayer = player(None)
     mPlayer.set_vol(100)
 
-    start_ms = time.ticks_ms()   # Mark start time in milliseconds
-    duration = 3000             # 3 seconds total
-    led_count = 12
-    step = duration // led_count  # How many ms each LED represents (250 ms)
-
-    progress = 0  # Keep track of how many LEDs are lit
-    ring.set_manual(0, (100, 0, 0))
-        
-    while True:
-        if left.value() != 0:
-            machine.reset()
-        
-        elapsed = time.ticks_diff(time.ticks_ms(), start_ms)
-        
-        if elapsed >= duration:
-            break
-        
-        new_progress = elapsed // step  
-        
-        if new_progress != progress and new_progress < led_count:
-            ring.set_manual(new_progress, (100, 0, 0))
-            progress = new_progress
-        
-        time.sleep_ms(30)
-    
     mPlayer.play('file://sdcard/lib/data/reset-robot.wav')
     matrix.scroll("RESET", blue=100, speed=0.05)
 

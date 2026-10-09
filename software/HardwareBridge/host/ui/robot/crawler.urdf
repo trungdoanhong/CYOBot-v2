@@ -1,0 +1,1470 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="cyobot_crawler">
+  <!--Open-tree kinematic export. Restore loop_closures.json constraints for physical four-bar simulation. Parameters are provisional, not hardware calibrated.-->
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0 0 -0.01497628074" rpy="0 0 0" />
+      <mass value="0.20000000298023224" />
+      <inertia ixx="0.00034312770003452897" iyy="0.00034312770003452897" izz="0.0005318836774677038" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="Actuator_1_hip___case">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Actuator_1_hip___case.stl" />
+      </geometry>
+      <material name="base_link_Actuator_1_hip___case_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_1_hip___gearbox">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Actuator_1_hip___gearbox.stl" />
+      </geometry>
+      <material name="base_link_Actuator_1_hip___gearbox_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_1_hip___label">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Actuator_1_hip___label.stl" />
+      </geometry>
+      <material name="base_link_Actuator_1_hip___label_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_1_hip___mounting_flange">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Actuator_1_hip___mounting_flange.stl" />
+      </geometry>
+      <material name="base_link_Actuator_1_hip___mounting_flange_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_2_hip___case">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Actuator_2_hip___case.stl" />
+      </geometry>
+      <material name="base_link_Actuator_2_hip___case_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_2_hip___gearbox">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Actuator_2_hip___gearbox.stl" />
+      </geometry>
+      <material name="base_link_Actuator_2_hip___gearbox_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_2_hip___label">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Actuator_2_hip___label.stl" />
+      </geometry>
+      <material name="base_link_Actuator_2_hip___label_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_2_hip___mounting_flange">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Actuator_2_hip___mounting_flange.stl" />
+      </geometry>
+      <material name="base_link_Actuator_2_hip___mounting_flange_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_3_hip___case">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Actuator_3_hip___case.stl" />
+      </geometry>
+      <material name="base_link_Actuator_3_hip___case_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_3_hip___gearbox">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Actuator_3_hip___gearbox.stl" />
+      </geometry>
+      <material name="base_link_Actuator_3_hip___gearbox_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_3_hip___label">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Actuator_3_hip___label.stl" />
+      </geometry>
+      <material name="base_link_Actuator_3_hip___label_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_3_hip___mounting_flange">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Actuator_3_hip___mounting_flange.stl" />
+      </geometry>
+      <material name="base_link_Actuator_3_hip___mounting_flange_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_4_hip___case">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Actuator_4_hip___case.stl" />
+      </geometry>
+      <material name="base_link_Actuator_4_hip___case_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_4_hip___gearbox">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Actuator_4_hip___gearbox.stl" />
+      </geometry>
+      <material name="base_link_Actuator_4_hip___gearbox_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_4_hip___label">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Actuator_4_hip___label.stl" />
+      </geometry>
+      <material name="base_link_Actuator_4_hip___label_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_4_hip___mounting_flange">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Actuator_4_hip___mounting_flange.stl" />
+      </geometry>
+      <material name="base_link_Actuator_4_hip___mounting_flange_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Body___battery_cover">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Body___battery_cover.stl" />
+      </geometry>
+      <material name="base_link_Body___battery_cover_material">
+        <color rgba="0.7599999905 0.7300000191 0.6399999857 1" />
+      </material>
+    </visual>
+    <visual name="Body___hip_frame">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Body___hip_frame.stl" />
+      </geometry>
+      <material name="base_link_Body___hip_frame_material">
+        <color rgba="0.7599999905 0.7300000191 0.6399999857 1" />
+      </material>
+    </visual>
+    <visual name="Body___mechanics_board_holder">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Body___mechanics_board_holder.stl" />
+      </geometry>
+      <material name="base_link_Body___mechanics_board_holder_material">
+        <color rgba="0.7599999905 0.7300000191 0.6399999857 1" />
+      </material>
+    </visual>
+    <visual name="Body___servo_clamp">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Body___servo_clamp.stl" />
+      </geometry>
+      <material name="base_link_Body___servo_clamp_material">
+        <color rgba="0.7599999905 0.7300000191 0.6399999857 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___battery">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___battery.stl" />
+      </geometry>
+      <material name="base_link_Electronics___battery_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___board_1_connector__18">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___board_1_connector__18.stl" />
+      </geometry>
+      <material name="base_link_Electronics___board_1_connector__18_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___board_1_connector_18">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___board_1_connector_18.stl" />
+      </geometry>
+      <material name="base_link_Electronics___board_1_connector_18_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___board_2_connector__18">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___board_2_connector__18.stl" />
+      </geometry>
+      <material name="base_link_Electronics___board_2_connector__18_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___board_2_connector_18">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___board_2_connector_18.stl" />
+      </geometry>
+      <material name="base_link_Electronics___board_2_connector_18_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___display">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___display.stl" />
+      </geometry>
+      <material name="base_link_Electronics___display_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___LED_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___LED_1.stl" />
+      </geometry>
+      <material name="base_link_Electronics___LED_1_material">
+        <color rgba="0 0.9499999881 0.5500000119 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___LED_10">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___LED_10.stl" />
+      </geometry>
+      <material name="base_link_Electronics___LED_10_material">
+        <color rgba="0 0.9499999881 0.5500000119 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___LED_11">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___LED_11.stl" />
+      </geometry>
+      <material name="base_link_Electronics___LED_11_material">
+        <color rgba="0 0.9499999881 0.5500000119 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___LED_12">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___LED_12.stl" />
+      </geometry>
+      <material name="base_link_Electronics___LED_12_material">
+        <color rgba="0 0.9499999881 0.5500000119 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___LED_13">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___LED_13.stl" />
+      </geometry>
+      <material name="base_link_Electronics___LED_13_material">
+        <color rgba="0 0.9499999881 0.5500000119 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___LED_14">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___LED_14.stl" />
+      </geometry>
+      <material name="base_link_Electronics___LED_14_material">
+        <color rgba="0 0.9499999881 0.5500000119 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___LED_15">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___LED_15.stl" />
+      </geometry>
+      <material name="base_link_Electronics___LED_15_material">
+        <color rgba="0 0.9499999881 0.5500000119 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___LED_16">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___LED_16.stl" />
+      </geometry>
+      <material name="base_link_Electronics___LED_16_material">
+        <color rgba="0 0.9499999881 0.5500000119 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___LED_2">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___LED_2.stl" />
+      </geometry>
+      <material name="base_link_Electronics___LED_2_material">
+        <color rgba="0 0.9499999881 0.5500000119 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___LED_3">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___LED_3.stl" />
+      </geometry>
+      <material name="base_link_Electronics___LED_3_material">
+        <color rgba="0 0.9499999881 0.5500000119 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___LED_4">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___LED_4.stl" />
+      </geometry>
+      <material name="base_link_Electronics___LED_4_material">
+        <color rgba="0 0.9499999881 0.5500000119 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___LED_5">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___LED_5.stl" />
+      </geometry>
+      <material name="base_link_Electronics___LED_5_material">
+        <color rgba="0 0.9499999881 0.5500000119 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___LED_6">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___LED_6.stl" />
+      </geometry>
+      <material name="base_link_Electronics___LED_6_material">
+        <color rgba="0 0.9499999881 0.5500000119 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___LED_7">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___LED_7.stl" />
+      </geometry>
+      <material name="base_link_Electronics___LED_7_material">
+        <color rgba="0 0.9499999881 0.5500000119 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___LED_8">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___LED_8.stl" />
+      </geometry>
+      <material name="base_link_Electronics___LED_8_material">
+        <color rgba="0 0.9499999881 0.5500000119 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___LED_9">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___LED_9.stl" />
+      </geometry>
+      <material name="base_link_Electronics___LED_9_material">
+        <color rgba="0 0.9499999881 0.5500000119 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___main_circular_PCB">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___main_circular_PCB.stl" />
+      </geometry>
+      <material name="base_link_Electronics___main_circular_PCB_material">
+        <color rgba="0.01499999966 0.03999999911 0.1099999994 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___mechanics_board_1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___mechanics_board_1.stl" />
+      </geometry>
+      <material name="base_link_Electronics___mechanics_board_1_material">
+        <color rgba="0.01499999966 0.03999999911 0.1099999994 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___mechanics_board_2">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___mechanics_board_2.stl" />
+      </geometry>
+      <material name="base_link_Electronics___mechanics_board_2_material">
+        <color rgba="0.01499999966 0.03999999911 0.1099999994 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___power_connector">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___power_connector.stl" />
+      </geometry>
+      <material name="base_link_Electronics___power_connector_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Electronics___processor">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Electronics___processor.stl" />
+      </geometry>
+      <material name="base_link_Electronics___processor_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Head___bottom_cap">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Head___bottom_cap.stl" />
+      </geometry>
+      <material name="base_link_Head___bottom_cap_material">
+        <color rgba="0.7599999905 0.7300000191 0.6399999857 1" />
+      </material>
+    </visual>
+    <visual name="Head___light_concentrator">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Head___light_concentrator.stl" />
+      </geometry>
+      <material name="base_link_Head___light_concentrator_material">
+        <color rgba="0.02500000037 0.8199999928 0.4300000072 1" />
+      </material>
+    </visual>
+    <visual name="Head___light_diffuser">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Head___light_diffuser.stl" />
+      </geometry>
+      <material name="base_link_Head___light_diffuser_material">
+        <color rgba="0.02500000037 0.8199999928 0.4300000072 1" />
+      </material>
+    </visual>
+    <visual name="Head___top_cap">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Head___top_cap.stl" />
+      </geometry>
+      <material name="base_link_Head___top_cap_material">
+        <color rgba="0.7599999905 0.7300000191 0.6399999857 1" />
+      </material>
+    </visual>
+    <visual name="Head_clamp_1___latch">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Head_clamp_1___latch.stl" />
+      </geometry>
+      <material name="base_link_Head_clamp_1___latch_material">
+        <color rgba="0.02500000037 0.8199999928 0.4300000072 1" />
+      </material>
+    </visual>
+    <visual name="Head_clamp_2___latch">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Head_clamp_2___latch.stl" />
+      </geometry>
+      <material name="base_link_Head_clamp_2___latch_material">
+        <color rgba="0.02500000037 0.8199999928 0.4300000072 1" />
+      </material>
+    </visual>
+    <visual name="Head_clamp_3___latch">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Head_clamp_3___latch.stl" />
+      </geometry>
+      <material name="base_link_Head_clamp_3___latch_material">
+        <color rgba="0.02500000037 0.8199999928 0.4300000072 1" />
+      </material>
+    </visual>
+    <visual name="Head_clamp_4___latch">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Head_clamp_4___latch.stl" />
+      </geometry>
+      <material name="base_link_Head_clamp_4___latch_material">
+        <color rgba="0.02500000037 0.8199999928 0.4300000072 1" />
+      </material>
+    </visual>
+    <visual name="Leg_1___hip_servo_holder">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Leg_1___hip_servo_holder.stl" />
+      </geometry>
+      <material name="base_link_Leg_1___hip_servo_holder_material">
+        <color rgba="0.02500000037 0.8199999928 0.4300000072 1" />
+      </material>
+    </visual>
+    <visual name="Leg_2___hip_servo_holder">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Leg_2___hip_servo_holder.stl" />
+      </geometry>
+      <material name="base_link_Leg_2___hip_servo_holder_material">
+        <color rgba="0.02500000037 0.8199999928 0.4300000072 1" />
+      </material>
+    </visual>
+    <visual name="Leg_3___hip_servo_holder">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Leg_3___hip_servo_holder.stl" />
+      </geometry>
+      <material name="base_link_Leg_3___hip_servo_holder_material">
+        <color rgba="0.02500000037 0.8199999928 0.4300000072 1" />
+      </material>
+    </visual>
+    <visual name="Leg_4___hip_servo_holder">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_visual_Leg_4___hip_servo_holder.stl" />
+      </geometry>
+      <material name="base_link_Leg_4___hip_servo_holder_material">
+        <color rgba="0.02500000037 0.8199999928 0.4300000072 1" />
+      </material>
+    </visual>
+    <collision name="Body___battery_cover">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_collision_Body___battery_cover.stl" />
+      </geometry>
+    </collision>
+    <collision name="Body___hip_frame">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_collision_Body___hip_frame.stl" />
+      </geometry>
+    </collision>
+    <collision name="Body___mechanics_board_holder">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_collision_Body___mechanics_board_holder.stl" />
+      </geometry>
+    </collision>
+    <collision name="Body___servo_clamp">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_collision_Body___servo_clamp.stl" />
+      </geometry>
+    </collision>
+    <collision name="Head___bottom_cap">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_collision_Head___bottom_cap.stl" />
+      </geometry>
+    </collision>
+    <collision name="Head___light_concentrator">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_collision_Head___light_concentrator.stl" />
+      </geometry>
+    </collision>
+    <collision name="Head___light_diffuser">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_collision_Head___light_diffuser.stl" />
+      </geometry>
+    </collision>
+    <collision name="Head___top_cap">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_collision_Head___top_cap.stl" />
+      </geometry>
+    </collision>
+    <collision name="Head_clamp_1___latch">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_collision_Head_clamp_1___latch.stl" />
+      </geometry>
+    </collision>
+    <collision name="Head_clamp_2___latch">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_collision_Head_clamp_2___latch.stl" />
+      </geometry>
+    </collision>
+    <collision name="Head_clamp_3___latch">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_collision_Head_clamp_3___latch.stl" />
+      </geometry>
+    </collision>
+    <collision name="Head_clamp_4___latch">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_collision_Head_clamp_4___latch.stl" />
+      </geometry>
+    </collision>
+    <collision name="Leg_1___hip_servo_holder">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_collision_Leg_1___hip_servo_holder.stl" />
+      </geometry>
+    </collision>
+    <collision name="Leg_2___hip_servo_holder">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_collision_Leg_2___hip_servo_holder.stl" />
+      </geometry>
+    </collision>
+    <collision name="Leg_3___hip_servo_holder">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_collision_Leg_3___hip_servo_holder.stl" />
+      </geometry>
+    </collision>
+    <collision name="Leg_4___hip_servo_holder">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/base_link_collision_Leg_4___hip_servo_holder.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="leg1_hip">
+    <inertial>
+      <origin xyz="-0.01429999992 -4.656612873e-10 0" rpy="0 0 0" />
+      <mass value="0.009999999776482582" />
+      <inertia ixx="1.6181335240617045e-06" iyy="2.8717668101307936e-06" izz="1.493633362770197e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="Actuator_1_hip___fastener">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg1_hip_visual_Actuator_1_hip___fastener.stl" />
+      </geometry>
+      <material name="leg1_hip_Actuator_1_hip___fastener_material">
+        <color rgba="0.4499999881 0.4799999893 0.5199999809 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_1_hip___screw_slot">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg1_hip_visual_Actuator_1_hip___screw_slot.stl" />
+      </geometry>
+      <material name="leg1_hip_Actuator_1_hip___screw_slot_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_1_hip___spline">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg1_hip_visual_Actuator_1_hip___spline.stl" />
+      </geometry>
+      <material name="leg1_hip_Actuator_1_hip___spline_material">
+        <color rgba="0.4499999881 0.4799999893 0.5199999809 1" />
+      </material>
+    </visual>
+    <visual name="Leg_1___hip_connector">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg1_hip_visual_Leg_1___hip_connector.stl" />
+      </geometry>
+      <material name="leg1_hip_Leg_1___hip_connector_material">
+        <color rgba="0.7599999905 0.7300000191 0.6399999857 1" />
+      </material>
+    </visual>
+    <collision name="Leg_1___hip_connector">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg1_hip_collision_Leg_1___hip_connector.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="leg1_lower">
+    <inertial>
+      <origin xyz="-0.01600000449 -9.313225746e-10 0" rpy="0 0 0" />
+      <mass value="0.007000000216066837" />
+      <inertia ixx="1.1326933417876717e-06" iyy="1.213016957990476e-06" izz="2.177710257456056e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="Actuator_1_foot___fastener">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg1_lower_visual_Actuator_1_foot___fastener.stl" />
+      </geometry>
+      <material name="leg1_lower_Actuator_1_foot___fastener_material">
+        <color rgba="0.4499999881 0.4799999893 0.5199999809 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_1_foot___screw_slot">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg1_lower_visual_Actuator_1_foot___screw_slot.stl" />
+      </geometry>
+      <material name="leg1_lower_Actuator_1_foot___screw_slot_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_1_foot___spline">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg1_lower_visual_Actuator_1_foot___spline.stl" />
+      </geometry>
+      <material name="leg1_lower_Actuator_1_foot___spline_material">
+        <color rgba="0.4499999881 0.4799999893 0.5199999809 1" />
+      </material>
+    </visual>
+    <visual name="Leg_1___lower_linkage">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg1_lower_visual_Leg_1___lower_linkage.stl" />
+      </geometry>
+      <material name="leg1_lower_Leg_1___lower_linkage_material">
+        <color rgba="0.02500000037 0.8199999928 0.4300000072 1" />
+      </material>
+    </visual>
+    <collision name="Leg_1___lower_linkage">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg1_lower_collision_Leg_1___lower_linkage.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="leg1_foot">
+    <inertial>
+      <origin xyz="-0.0002500116825 -4.190951586e-09 0" rpy="0 0 0" />
+      <mass value="0.032999999821186066" />
+      <inertia ixx="2.9975000870763324e-05" iyy="2.84009292954579e-05" izz="3.3759276902856072e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="Actuator_1_foot___case">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg1_foot_visual_Actuator_1_foot___case.stl" />
+      </geometry>
+      <material name="leg1_foot_Actuator_1_foot___case_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_1_foot___gearbox">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg1_foot_visual_Actuator_1_foot___gearbox.stl" />
+      </geometry>
+      <material name="leg1_foot_Actuator_1_foot___gearbox_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_1_foot___label">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg1_foot_visual_Actuator_1_foot___label.stl" />
+      </geometry>
+      <material name="leg1_foot_Actuator_1_foot___label_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_1_foot___mounting_flange">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg1_foot_visual_Actuator_1_foot___mounting_flange.stl" />
+      </geometry>
+      <material name="leg1_foot_Actuator_1_foot___mounting_flange_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Leg_1___foot">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg1_foot_visual_Leg_1___foot.stl" />
+      </geometry>
+      <material name="leg1_foot_Leg_1___foot_material">
+        <color rgba="0.7599999905 0.7300000191 0.6399999857 1" />
+      </material>
+    </visual>
+    <collision name="Leg_1___foot">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg1_foot_collision_Leg_1___foot.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="leg1_upper">
+    <inertial>
+      <origin xyz="0.01599998958 -4.656612873e-09 0" rpy="0 0 0" />
+      <mass value="0.004999999888241291" />
+      <inertia ixx="8.090667051874334e-07" iyy="8.664406436764693e-07" izz="1.5555073105133488e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="Leg_1___upper_linkage">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg1_upper_visual_Leg_1___upper_linkage.stl" />
+      </geometry>
+      <material name="leg1_upper_Leg_1___upper_linkage_material">
+        <color rgba="0.02500000037 0.8199999928 0.4300000072 1" />
+      </material>
+    </visual>
+    <collision name="Leg_1___upper_linkage">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg1_upper_collision_Leg_1___upper_linkage.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="leg2_hip">
+    <inertial>
+      <origin xyz="-0.01430000551 3.492459655e-09 3.725290298e-09" rpy="0 0 0" />
+      <mass value="0.009999999776482582" />
+      <inertia ixx="1.6181335240617045e-06" iyy="2.8717672648781445e-06" izz="1.4936335901438724e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="Actuator_2_hip___fastener">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg2_hip_visual_Actuator_2_hip___fastener.stl" />
+      </geometry>
+      <material name="leg2_hip_Actuator_2_hip___fastener_material">
+        <color rgba="0.4499999881 0.4799999893 0.5199999809 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_2_hip___screw_slot">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg2_hip_visual_Actuator_2_hip___screw_slot.stl" />
+      </geometry>
+      <material name="leg2_hip_Actuator_2_hip___screw_slot_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_2_hip___spline">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg2_hip_visual_Actuator_2_hip___spline.stl" />
+      </geometry>
+      <material name="leg2_hip_Actuator_2_hip___spline_material">
+        <color rgba="0.4499999881 0.4799999893 0.5199999809 1" />
+      </material>
+    </visual>
+    <visual name="Leg_2___hip_connector">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg2_hip_visual_Leg_2___hip_connector.stl" />
+      </geometry>
+      <material name="leg2_hip_Leg_2___hip_connector_material">
+        <color rgba="0.7599999905 0.7300000191 0.6399999857 1" />
+      </material>
+    </visual>
+    <collision name="Leg_2___hip_connector">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg2_hip_collision_Leg_2___hip_connector.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="leg2_lower">
+    <inertial>
+      <origin xyz="-0.01599998772 1.024454832e-08 3.958120942e-09" rpy="0 0 0" />
+      <mass value="0.007000000216066837" />
+      <inertia ixx="1.1326933417876717e-06" iyy="1.213016957990476e-06" izz="2.177710257456056e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="Actuator_2_foot___fastener">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg2_lower_visual_Actuator_2_foot___fastener.stl" />
+      </geometry>
+      <material name="leg2_lower_Actuator_2_foot___fastener_material">
+        <color rgba="0.4499999881 0.4799999893 0.5199999809 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_2_foot___screw_slot">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg2_lower_visual_Actuator_2_foot___screw_slot.stl" />
+      </geometry>
+      <material name="leg2_lower_Actuator_2_foot___screw_slot_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_2_foot___spline">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg2_lower_visual_Actuator_2_foot___spline.stl" />
+      </geometry>
+      <material name="leg2_lower_Actuator_2_foot___spline_material">
+        <color rgba="0.4499999881 0.4799999893 0.5199999809 1" />
+      </material>
+    </visual>
+    <visual name="Leg_2___lower_linkage">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg2_lower_visual_Leg_2___lower_linkage.stl" />
+      </geometry>
+      <material name="leg2_lower_Leg_2___lower_linkage_material">
+        <color rgba="0.02500000037 0.8199999928 0.4300000072 1" />
+      </material>
+    </visual>
+    <collision name="Leg_2___lower_linkage">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg2_lower_collision_Leg_2___lower_linkage.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="leg2_foot">
+    <inertial>
+      <origin xyz="-0.000250000041 3.259629011e-09 3.725290298e-09" rpy="0 0 0" />
+      <mass value="0.032999999821186066" />
+      <inertia ixx="2.9975000870763324e-05" iyy="2.84009292954579e-05" izz="3.3759276902856072e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="Actuator_2_foot___case">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg2_foot_visual_Actuator_2_foot___case.stl" />
+      </geometry>
+      <material name="leg2_foot_Actuator_2_foot___case_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_2_foot___gearbox">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg2_foot_visual_Actuator_2_foot___gearbox.stl" />
+      </geometry>
+      <material name="leg2_foot_Actuator_2_foot___gearbox_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_2_foot___label">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg2_foot_visual_Actuator_2_foot___label.stl" />
+      </geometry>
+      <material name="leg2_foot_Actuator_2_foot___label_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_2_foot___mounting_flange">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg2_foot_visual_Actuator_2_foot___mounting_flange.stl" />
+      </geometry>
+      <material name="leg2_foot_Actuator_2_foot___mounting_flange_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Leg_2___foot">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg2_foot_visual_Leg_2___foot.stl" />
+      </geometry>
+      <material name="leg2_foot_Leg_2___foot_material">
+        <color rgba="0.7599999905 0.7300000191 0.6399999857 1" />
+      </material>
+    </visual>
+    <collision name="Leg_2___foot">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg2_foot_collision_Leg_2___foot.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="leg2_upper">
+    <inertial>
+      <origin xyz="0.01600001194 1.024454832e-08 2.095475793e-09" rpy="0 0 0" />
+      <mass value="0.004999999888241291" />
+      <inertia ixx="8.090667051874334e-07" iyy="8.664406436764693e-07" izz="1.5555073105133488e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="Leg_2___upper_linkage">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg2_upper_visual_Leg_2___upper_linkage.stl" />
+      </geometry>
+      <material name="leg2_upper_Leg_2___upper_linkage_material">
+        <color rgba="0.02500000037 0.8199999928 0.4300000072 1" />
+      </material>
+    </visual>
+    <collision name="Leg_2___upper_linkage">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg2_upper_collision_Leg_2___upper_linkage.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="leg3_hip">
+    <inertial>
+      <origin xyz="-0.01429999806 -4.656612873e-10 3.725290298e-09" rpy="0 0 0" />
+      <mass value="0.009999999776482582" />
+      <inertia ixx="1.6181335240617045e-06" iyy="2.8717672648781445e-06" izz="1.4936337038307101e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="Actuator_3_hip___fastener">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg3_hip_visual_Actuator_3_hip___fastener.stl" />
+      </geometry>
+      <material name="leg3_hip_Actuator_3_hip___fastener_material">
+        <color rgba="0.4499999881 0.4799999893 0.5199999809 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_3_hip___screw_slot">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg3_hip_visual_Actuator_3_hip___screw_slot.stl" />
+      </geometry>
+      <material name="leg3_hip_Actuator_3_hip___screw_slot_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_3_hip___spline">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg3_hip_visual_Actuator_3_hip___spline.stl" />
+      </geometry>
+      <material name="leg3_hip_Actuator_3_hip___spline_material">
+        <color rgba="0.4499999881 0.4799999893 0.5199999809 1" />
+      </material>
+    </visual>
+    <visual name="Leg_3___hip_connector">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg3_hip_visual_Leg_3___hip_connector.stl" />
+      </geometry>
+      <material name="leg3_hip_Leg_3___hip_connector_material">
+        <color rgba="0.7599999905 0.7300000191 0.6399999857 1" />
+      </material>
+    </visual>
+    <collision name="Leg_3___hip_connector">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg3_hip_collision_Leg_3___hip_connector.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="leg3_lower">
+    <inertial>
+      <origin xyz="-0.01599999145 2.793967724e-09 0" rpy="0 0 0" />
+      <mass value="0.007000000216066837" />
+      <inertia ixx="1.1326933417876717e-06" iyy="1.213016957990476e-06" izz="2.177710257456056e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="Actuator_3_foot___fastener">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg3_lower_visual_Actuator_3_foot___fastener.stl" />
+      </geometry>
+      <material name="leg3_lower_Actuator_3_foot___fastener_material">
+        <color rgba="0.4499999881 0.4799999893 0.5199999809 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_3_foot___screw_slot">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg3_lower_visual_Actuator_3_foot___screw_slot.stl" />
+      </geometry>
+      <material name="leg3_lower_Actuator_3_foot___screw_slot_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_3_foot___spline">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg3_lower_visual_Actuator_3_foot___spline.stl" />
+      </geometry>
+      <material name="leg3_lower_Actuator_3_foot___spline_material">
+        <color rgba="0.4499999881 0.4799999893 0.5199999809 1" />
+      </material>
+    </visual>
+    <visual name="Leg_3___lower_linkage">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg3_lower_visual_Leg_3___lower_linkage.stl" />
+      </geometry>
+      <material name="leg3_lower_Leg_3___lower_linkage_material">
+        <color rgba="0.02500000037 0.8199999928 0.4300000072 1" />
+      </material>
+    </visual>
+    <collision name="Leg_3___lower_linkage">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg3_lower_collision_Leg_3___lower_linkage.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="leg3_foot">
+    <inertial>
+      <origin xyz="-0.0002499921247 -4.190951586e-09 0" rpy="0 0 0" />
+      <mass value="0.032999999821186066" />
+      <inertia ixx="2.9975000870763324e-05" iyy="2.84009292954579e-05" izz="3.3759276902856072e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="Actuator_3_foot___case">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg3_foot_visual_Actuator_3_foot___case.stl" />
+      </geometry>
+      <material name="leg3_foot_Actuator_3_foot___case_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_3_foot___gearbox">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg3_foot_visual_Actuator_3_foot___gearbox.stl" />
+      </geometry>
+      <material name="leg3_foot_Actuator_3_foot___gearbox_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_3_foot___label">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg3_foot_visual_Actuator_3_foot___label.stl" />
+      </geometry>
+      <material name="leg3_foot_Actuator_3_foot___label_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_3_foot___mounting_flange">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg3_foot_visual_Actuator_3_foot___mounting_flange.stl" />
+      </geometry>
+      <material name="leg3_foot_Actuator_3_foot___mounting_flange_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Leg_3___foot">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg3_foot_visual_Leg_3___foot.stl" />
+      </geometry>
+      <material name="leg3_foot_Leg_3___foot_material">
+        <color rgba="0.7599999905 0.7300000191 0.6399999857 1" />
+      </material>
+    </visual>
+    <collision name="Leg_3___foot">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg3_foot_collision_Leg_3___foot.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="leg3_upper">
+    <inertial>
+      <origin xyz="0.01600001752 -9.313225746e-10 0" rpy="0 0 0" />
+      <mass value="0.004999999888241291" />
+      <inertia ixx="8.090667051874334e-07" iyy="8.664407573633071e-07" izz="1.5555074242001865e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="Leg_3___upper_linkage">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg3_upper_visual_Leg_3___upper_linkage.stl" />
+      </geometry>
+      <material name="leg3_upper_Leg_3___upper_linkage_material">
+        <color rgba="0.02500000037 0.8199999928 0.4300000072 1" />
+      </material>
+    </visual>
+    <collision name="Leg_3___upper_linkage">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg3_upper_collision_Leg_3___upper_linkage.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="leg4_hip">
+    <inertial>
+      <origin xyz="-0.01429999992 3.492459655e-09 3.725290298e-09" rpy="0 0 0" />
+      <mass value="0.009999999776482582" />
+      <inertia ixx="1.6181335240617045e-06" iyy="2.8717668101307936e-06" izz="1.493633362770197e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="Actuator_4_hip___fastener">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg4_hip_visual_Actuator_4_hip___fastener.stl" />
+      </geometry>
+      <material name="leg4_hip_Actuator_4_hip___fastener_material">
+        <color rgba="0.4499999881 0.4799999893 0.5199999809 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_4_hip___screw_slot">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg4_hip_visual_Actuator_4_hip___screw_slot.stl" />
+      </geometry>
+      <material name="leg4_hip_Actuator_4_hip___screw_slot_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_4_hip___spline">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg4_hip_visual_Actuator_4_hip___spline.stl" />
+      </geometry>
+      <material name="leg4_hip_Actuator_4_hip___spline_material">
+        <color rgba="0.4499999881 0.4799999893 0.5199999809 1" />
+      </material>
+    </visual>
+    <visual name="Leg_4___hip_connector">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg4_hip_visual_Leg_4___hip_connector.stl" />
+      </geometry>
+      <material name="leg4_hip_Leg_4___hip_connector_material">
+        <color rgba="0.7599999905 0.7300000191 0.6399999857 1" />
+      </material>
+    </visual>
+    <collision name="Leg_4___hip_connector">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg4_hip_collision_Leg_4___hip_connector.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="leg4_lower">
+    <inertial>
+      <origin xyz="-0.01600000449 2.793967724e-09 3.958120942e-09" rpy="0 0 0" />
+      <mass value="0.007000000216066837" />
+      <inertia ixx="1.1326933417876717e-06" iyy="1.213016957990476e-06" izz="2.177710257456056e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="Actuator_4_foot___fastener">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg4_lower_visual_Actuator_4_foot___fastener.stl" />
+      </geometry>
+      <material name="leg4_lower_Actuator_4_foot___fastener_material">
+        <color rgba="0.4499999881 0.4799999893 0.5199999809 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_4_foot___screw_slot">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg4_lower_visual_Actuator_4_foot___screw_slot.stl" />
+      </geometry>
+      <material name="leg4_lower_Actuator_4_foot___screw_slot_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_4_foot___spline">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg4_lower_visual_Actuator_4_foot___spline.stl" />
+      </geometry>
+      <material name="leg4_lower_Actuator_4_foot___spline_material">
+        <color rgba="0.4499999881 0.4799999893 0.5199999809 1" />
+      </material>
+    </visual>
+    <visual name="Leg_4___lower_linkage">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg4_lower_visual_Leg_4___lower_linkage.stl" />
+      </geometry>
+      <material name="leg4_lower_Leg_4___lower_linkage_material">
+        <color rgba="0.02500000037 0.8199999928 0.4300000072 1" />
+      </material>
+    </visual>
+    <collision name="Leg_4___lower_linkage">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg4_lower_collision_Leg_4___lower_linkage.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="leg4_foot">
+    <inertial>
+      <origin xyz="-0.0002500037663 6.98491931e-09 3.725290298e-09" rpy="0 0 0" />
+      <mass value="0.032999999821186066" />
+      <inertia ixx="2.9975000870763324e-05" iyy="2.84009292954579e-05" izz="3.3759276902856072e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="Actuator_4_foot___case">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg4_foot_visual_Actuator_4_foot___case.stl" />
+      </geometry>
+      <material name="leg4_foot_Actuator_4_foot___case_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_4_foot___gearbox">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg4_foot_visual_Actuator_4_foot___gearbox.stl" />
+      </geometry>
+      <material name="leg4_foot_Actuator_4_foot___gearbox_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_4_foot___label">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg4_foot_visual_Actuator_4_foot___label.stl" />
+      </geometry>
+      <material name="leg4_foot_Actuator_4_foot___label_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Actuator_4_foot___mounting_flange">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg4_foot_visual_Actuator_4_foot___mounting_flange.stl" />
+      </geometry>
+      <material name="leg4_foot_Actuator_4_foot___mounting_flange_material">
+        <color rgba="0.03500000015 0.03799999878 0.04600000009 1" />
+      </material>
+    </visual>
+    <visual name="Leg_4___foot">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg4_foot_visual_Leg_4___foot.stl" />
+      </geometry>
+      <material name="leg4_foot_Leg_4___foot_material">
+        <color rgba="0.7599999905 0.7300000191 0.6399999857 1" />
+      </material>
+    </visual>
+    <collision name="Leg_4___foot">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg4_foot_collision_Leg_4___foot.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="leg4_upper">
+    <inertial>
+      <origin xyz="0.01599999703 6.519258022e-09 2.095475793e-09" rpy="0 0 0" />
+      <mass value="0.004999999888241291" />
+      <inertia ixx="8.090667051874334e-07" iyy="8.664406436764693e-07" izz="1.5555073105133488e-06" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    <visual name="Leg_4___upper_linkage">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg4_upper_visual_Leg_4___upper_linkage.stl" />
+      </geometry>
+      <material name="leg4_upper_Leg_4___upper_linkage_material">
+        <color rgba="0.02500000037 0.8199999928 0.4300000072 1" />
+      </material>
+    </visual>
+    <collision name="Leg_4___upper_linkage">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes/leg4_upper_collision_Leg_4___upper_linkage.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="leg1_hip_servo" type="revolute">
+    <parent link="base_link" />
+    <child link="leg1_hip" />
+    <origin xyz="0.04677511007 0.04677512497 -0.03400256112" rpy="0 -0 -2.35619468" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.6108652381980153" upper="0.6108652381980153" effort="0.1" velocity="5.0" />
+  </joint>
+  <joint name="leg1_lower_passive" type="revolute">
+    <parent link="leg1_hip" />
+    <child link="leg1_lower" />
+    <origin xyz="-0.02119999751 3.63797898e-15 -0.0120000001" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.3490658503988659" upper="0.9599310885968813" effort="0.0" velocity="10.0" />
+    <mimic joint="leg1_foot_servo" multiplier="-1.0" offset="0" />
+  </joint>
+  <joint name="leg1_foot_servo" type="revolute">
+    <parent link="leg1_lower" />
+    <child link="leg1_foot" />
+    <origin xyz="-0.03199999779 3.814701e-09 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.9599310885968813" upper="0.3490658503988659" effort="0.1" velocity="5.0" />
+  </joint>
+  <joint name="leg1_upper_passive" type="revolute">
+    <parent link="leg1_foot" />
+    <child link="leg1_upper" />
+    <origin xyz="-3.814697447e-09 3.63797898e-15 0.02400000021" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.3490658503988659" upper="0.9599310885968813" effort="0.0" velocity="10.0" />
+    <mimic joint="leg1_foot_servo" multiplier="-1.0" offset="0" />
+  </joint>
+  <joint name="leg2_hip_servo" type="revolute">
+    <parent link="base_link" />
+    <child link="leg2_hip" />
+    <origin xyz="-0.04677512124 0.04677511752 -0.03400256112" rpy="0 0 -0.7853988841" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.6108652381980153" upper="0.6108652381980153" effort="0.1" velocity="5.0" />
+  </joint>
+  <joint name="leg2_lower_passive" type="revolute">
+    <parent link="leg2_hip" />
+    <child link="leg2_lower" />
+    <origin xyz="-0.02120000869 0 -0.01199999638" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.3490658503988659" upper="0.9599310885968813" effort="0.0" velocity="10.0" />
+    <mimic joint="leg2_foot_servo" multiplier="-1.0" offset="0" />
+  </joint>
+  <joint name="leg2_foot_servo" type="revolute">
+    <parent link="leg2_lower" />
+    <child link="leg2_foot" />
+    <origin xyz="-0.03199999779 0 3.814697447e-09" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.9599310885968813" upper="0.3490658503988659" effort="0.1" velocity="5.0" />
+  </joint>
+  <joint name="leg2_upper_passive" type="revolute">
+    <parent link="leg2_foot" />
+    <child link="leg2_upper" />
+    <origin xyz="3.814697447e-09 0 0.02400000393" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.3490658503988659" upper="0.9599310885968813" effort="0.0" velocity="10.0" />
+    <mimic joint="leg2_foot_servo" multiplier="-1.0" offset="0" />
+  </joint>
+  <joint name="leg3_hip_servo" type="revolute">
+    <parent link="base_link" />
+    <child link="leg3_hip" />
+    <origin xyz="-0.04677511007 -0.04677512124 -0.03400256112" rpy="0 0 0.7853980943" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.6108652381980153" upper="0.6108652381980153" effort="0.1" velocity="5.0" />
+  </joint>
+  <joint name="leg3_lower_passive" type="revolute">
+    <parent link="leg3_hip" />
+    <child link="leg3_lower" />
+    <origin xyz="-0.02119999751 1.81898949e-15 -0.01199999638" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.3490658503988659" upper="0.9599310885968813" effort="0.0" velocity="10.0" />
+    <mimic joint="leg3_foot_servo" multiplier="-1.0" offset="0" />
+  </joint>
+  <joint name="leg3_foot_servo" type="revolute">
+    <parent link="leg3_lower" />
+    <child link="leg3_foot" />
+    <origin xyz="-0.03199999779 1.81898949e-15 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.9599310885968813" upper="0.3490658503988659" effort="0.1" velocity="5.0" />
+  </joint>
+  <joint name="leg3_upper_passive" type="revolute">
+    <parent link="leg3_foot" />
+    <child link="leg3_upper" />
+    <origin xyz="1.14440919e-08 -3.814695226e-09 0.02400000021" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.3490658503988659" upper="0.9599310885968813" effort="0.0" velocity="10.0" />
+    <mimic joint="leg3_foot_servo" multiplier="-1.0" offset="0" />
+  </joint>
+  <joint name="leg4_hip_servo" type="revolute">
+    <parent link="base_link" />
+    <child link="leg4_hip" />
+    <origin xyz="0.04677512124 -0.04677511752 -0.03400256112" rpy="0 0 2.356194323" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.6108652381980153" upper="0.6108652381980153" effort="0.1" velocity="5.0" />
+  </joint>
+  <joint name="leg4_lower_passive" type="revolute">
+    <parent link="leg4_hip" />
+    <child link="leg4_lower" />
+    <origin xyz="-0.02120000124 0 -0.01199999638" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.3490658503988659" upper="0.9599310885968813" effort="0.0" velocity="10.0" />
+    <mimic joint="leg4_foot_servo" multiplier="-1.0" offset="0" />
+  </joint>
+  <joint name="leg4_foot_servo" type="revolute">
+    <parent link="leg4_lower" />
+    <child link="leg4_foot" />
+    <origin xyz="-0.03200000525 -3.814697447e-09 3.814697447e-09" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.9599310885968813" upper="0.3490658503988659" effort="0.1" velocity="5.0" />
+  </joint>
+  <joint name="leg4_upper_passive" type="revolute">
+    <parent link="leg4_foot" />
+    <child link="leg4_upper" />
+    <origin xyz="-3.814697447e-09 0 0.02400000393" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.3490658503988659" upper="0.9599310885968813" effort="0.0" velocity="10.0" />
+    <mimic joint="leg4_foot_servo" multiplier="-1.0" offset="0" />
+  </joint>
+</robot>

@@ -129,3 +129,47 @@ If you want to drive the 4-leg crawler without writing code in the portal editor
 * or `http://<robot-ip>/crawler-control` (WiFi mode)
 
 The page provides buttons for `forward`, `backward`, `rotate_left/right`, `lateral_left/right`, and `STOP`.
+
+## Switch between Crawler and servo test using the buttons
+
+The normal Portal/Crawler program starts in Crawler mode. After startup, hold
+both buttons (GPIO4 and GPIO38) together for 3 seconds to enter servo test.
+The LED ring turns orange. All 16 PCA9685 channels repeat the angle sequence
+listed below, holding each angle for one second.
+
+Release **both** buttons, then hold them together for another 3 seconds to
+return to Crawler mode. A continuous hold changes mode only once. Exiting the
+test disables servo pulses and waits for a new Crawler command; it does not
+automatically start walking. Crawler movement/Center commands are blocked
+during the test. The web panel's STOP and All Off buttons also end the test.
+The gesture works without a browser connection and after WebREPL connects.
+
+Deploy `pyboard/boot.py`, `pyboard/main.py`, `pyboard/main-server.py`,
+`sd/lib/servo_test.py`, `sd/lib/kinematics.py`, and the updated
+`sd/portal/crawler-control/index.html` to their corresponding board/SD paths.
+Use the normal `pyboard/main.py`, not the standalone sweep app below, for
+button switching. Restore-to-Portal uses the same updated `main-server.py`.
+The left-button-only recovery gesture remains available at boot; holding
+both buttons does not open the recovery menu.
+
+# Automatic RC Servo Sweep Test
+Use `sd/apps/servo_sweep_test_main.py` to check whether servos connected to any
+of the 16 PCA9685 channels are responding. At boot, all channels move together
+through this sequence and then repeat continuously:
+
+```text
+0, 90, 180, 150, 120, 90, 60, 30, 0, 30, 60, 90, 120, 150, 180
+```
+
+Each position is held for one second. The values are conventional RC-servo
+angles from 0 to 180 degrees.
+
+Deploy the test program and hard-reset the board:
+
+```bash
+rshell -p <PORT> -b 115200 cp sd/apps/servo_sweep_test_main.py /sdcard/main.py
+```
+
+To stop the test, turn off the board or interrupt it from the MicroPython REPL.
+Use a servo power supply sized for the number of connected servos; moving many
+servos at the same time can draw substantially more current than USB can supply.
